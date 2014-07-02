@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Reporte Laboratorio</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Reporte Laboratorio</f:facet>
+
+	<h:form id="reporteLabForm">
+		<p:growl id="msgs" showDetail="true" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">  
+        Codigo de Ficha:      
+			</f:facet>
+			<h:outputLabel value="Codigo: *" />
+			<p:selectOneMenu value="#{reporteLaboratorioControl.idRegTablet}" filter="true">
+				<f:selectItem itemLabel="Seleccione Ficha.." itemValue="" />
+				<f:selectItems
+					value="#{reporteLaboratorioControl.rhMcaMuestreosLst}" var="f"
+					itemValue="#{f.msId}" itemLabel="#{f.msCodigo}" />
+				<p:ajax update=":reporteLabForm"
+					listener="#{reporteLaboratorioControl.cargaDatosReporte()}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+
+
+
+		<p:dataTable id="reporteLabDT" var="r"
+			value="#{reporteLaboratorioControl.rhMcaReportelaboratoriosList}"
+			rendered="#{reporteLaboratorioControl.flagDatosReporte}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+           Carga de Reportes:   
+           <p:commandButton value="Actualizar"
+					action="#{reporteLaboratorioControl.actualizar()}"
+					icon="ui-icon-arrowrefresh-1-w" update=":reporteLabForm" />
+				<p:commandButton value="Guardar"
+					title="Guarda la información de tabla"
+					actionListener="#{reporteLaboratorioControl.guardar()}"
+					update=":reporteLabForm,:reporteLabForm:msgs" icon="ui-icon-disk" />
+				<p:commandButton value="Cargar Archivo"
+					action="#{reporteLaboratorioControl.activarCargarArchivos()}"
+					icon="ui-icon-home" update=":reporteLabForm" />
+				<p:commandButton value="Guardar Archivo"
+					actionListener="#{reporteLaboratorioControl.guardarLista}"
+					update=":reporteLabForm,:reporteLabForm:msgs" icon="ui-icon-disk"
+					rendered="#{reporteLaboratorioControl.flagCancelarUpload}">
+					<p:confirm header="Confirmación"
+						message="Desea sobrescribir la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<p:commandButton value="Cancelar Cargar Archivo"
+					action="#{reporteLaboratorioControl.cancelarCargarArchivos()}"
+					icon="ui-icon-close" update=":reporteLabForm"
+					rendered="#{reporteLaboratorioControl.flagCancelarUpload}" />
+				<p:fileUpload
+					fileUploadListener="#{reporteLaboratorioControl.handleFileUpload}"
+					mode="advanced" update=":reporteLabForm" sizeLimit="100000000"
+					auto="true" allowTypes="/(\.|\/)(|xls)$/"
+					rendered="#{reporteLaboratorioControl.flagUpload}" />
+			</f:facet>
+
+			<p:column headerText="Id">
+				<p:outputLabel value="#{r.rptId}" />
+			</p:column>
+			<p:column headerText="Rotulacion Laboratorio">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptRotulaciongruentec}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptRotulaciongruentec}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Cod. Muestreo"
+				filterBy="#{r.rptRotulacioncliente}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptRotulacioncliente}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptRotulacioncliente}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Proyecto" filterBy="#{r.rptProyecto}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptProyecto}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptProyecto}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Fecha Muestreo"
+				filterBy="#{r.rptFechamuestreo}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptFechamuestreo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptFechamuestreo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Fecha Ingreso">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptFechaingreso}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptFechaingreso}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Grupo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptGrupo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptGrupo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Parametros" filterBy="#{r.rptParametro}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptParametro}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptParametro}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Medición">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptMedicion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptMedicion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Unidad">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptUnidad}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptUnidad}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Fecha Análisis">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptFechaAnalisis}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptFechaAnalisis}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Limite Detección">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptLimiteDeteccion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptLimiteDeteccion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Limite Cuantificación">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptLimiteCuantificacion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptLimiteCuantificacion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Metodo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptMetodoReferencia}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptMetodoReferencia}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Cliente">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptCliente}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptCliente}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Tipo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptTipoMuestra}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptTipoMuestra}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Limite Maximo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptLimitemaximopermisible}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptLimitemaximopermisible}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Rango">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptRango}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptRango}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Estado ">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{r.rptEstadoparametro}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rptEstadoparametro}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

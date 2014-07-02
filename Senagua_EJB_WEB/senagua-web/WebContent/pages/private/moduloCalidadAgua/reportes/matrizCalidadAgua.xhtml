@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Matriz Calidad del Agua</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Matriz Calidad del Agua</f:facet>
+
+	<h:form id="matrizCalidadForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="tablesDT" var="t"
+			value="#{matrizCalidadAguaControl.rhTabletRegistroMCALts}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="10">
+			<f:facet name="header">  
+          Matriz Calidad del Agua          
+				<p:commandButton value="Actualizar"
+					action="#{matrizCalidadAguaControl.init}"
+					update=":matrizCalidadForm" icon="ui-icon-refresh" />
+
+			</f:facet>
+			<p:column headerText="Código Nº de Ficha">
+				<h:outputText value="#{t.rgNumeroficha}" />
+			</p:column>
+			<p:column headerText="Coordenadas X">
+				<h:outputText value="#{t.rgCoordenadax}" />
+			</p:column>
+			<p:column headerText="Coordenada Y">
+				<h:outputText value="#{t.rgCoordenaday}" />
+			</p:column>
+			<p:column headerText="Altura">
+				<h:outputText value="#{t.rgAltura}" />
+			</p:column>
+			<p:column headerText="Nombre del Sitio">
+			</p:column>
+			<p:column headerText="Rotulación  Cliente">
+			</p:column>
+			<p:column headerText="Nombre de la Fuente">
+				<h:outputText value="#{t.rgNombrefuente}" />
+			</p:column>
+			<p:column headerText="Datum">
+			</p:column>
+			<p:column headerText="Zona">
+			</p:column>
+			<p:column headerText="Provincia">
+				<h:outputText value="#{t.rg_provincia}" />
+			</p:column>
+			<p:column headerText="Cantón">
+				<h:outputText value="#{t.rg_canton}" />
+			</p:column>
+			<p:column headerText="Parroquia">
+				<h:outputText value="#{t.rg_parroquia}" />
+			</p:column>
+			<p:column headerText="Demarcación Hidrografía">
+				<h:outputText value="#{t.rg_demarcacion}" />
+			</p:column>
+			<p:column headerText="Cuenca">
+				<h:outputText value="#{t.rg_cuenca}" />
+			</p:column>
+			<p:column headerText="Sub Cuenca">
+				<h:outputText value="#{t.rg_subcuenca}" />
+			</p:column>
+			<p:column headerText="Código PFafstetter">
+				<h:outputText value="#{t.rg_codpfafsteter}" />
+			</p:column>
+			<p:column headerText="Unidad Hidrográfica PFafstetter">
+				<h:outputText value="#{t.rg_pfafsteter}" />
+			</p:column>
+			<p:column headerText="Monitoreo ">
+				<p:commandButton title="Editar"
+					action="#{matrizCalidadAguaControl.fichaMonitoreo}"
+					update=":matrizCalidadForm,:fichaMonitoreo" icon="ui-icon-pencil"
+					onclick="PF('dlg').show();">
+					<f:setPropertyActionListener
+						target="#{matrizCalidadAguaControl.rhTabletRegistro}" value="#{t}" />
+				</p:commandButton>
+			</p:column>
+
+
+		</p:dataTable>
+
+
+	</h:form>
+	<p:dialog id="modalDialog" header="Ficha: Ficha Monitoreo "
+		widgetVar="dlg" modal="true" height="500" width="900">
+		<h:form id="fichaMonitoreo">
+
+			<p:dataTable id="monitoreoDT" var="m"
+				value="#{matrizCalidadAguaControl.rhMcaMuestreos}" editable="true"
+				editMode="cell" widgetVar="zTable" paginator="true" rows="10">
+				<f:facet name="header">  
+          Matriz Muestreo del Agua				</f:facet>
+				<p:column headerText="Id">
+					<h:outputText value="#{m.msId}" />
+				</p:column>
+				<p:column headerText="Fecha">
+					<h:outputText value="#{m.msId}" />
+				</p:column>
+				<p:column headerText="Código">
+					<h:outputText value="#{m.msCodigo}" />
+				</p:column>
+				<p:column headerText="Observación">
+					<h:outputText value="#{m.msObservacion}" />
+				</p:column>
+				<p:column headerText="Código Nº de Ficha">
+					<h:outputText value="#{m.msFecha}" />
+				</p:column>
+				<p:column headerText="Demarcación">
+					<h:outputText value="#{m.msIddemarcacion}" />
+				</p:column>
+				<p:column headerText="Tipo Muestra">
+					<h:outputText value="#{m.msIddemarcacion}" />
+				</p:column>
+				<p:column headerText="Numero Ficha">
+					<h:outputText value="#{m.rgNumeroficha}" />
+				</p:column>
+				<p:column headerText="Riego">
+					<h:outputText value="#{m.msIdriego}" />
+				</p:column>
+				<p:column headerText="Campania">
+					<h:outputText value="#{m.msCampania}" />
+				</p:column>
+				<p:column headerText="Registrado ">
+					<h:outputText value="#{m.msRegsitradopor}" />
+				</p:column>
+				<p:column headerText="Registrado ">
+					<h:outputText value="#{m.msRegsitradopor}" />
+				</p:column>
+				<p:column headerText="Conductividad ">
+					<h:outputText value="#{m.msConductividad}" />
+				</p:column>
+				<p:column headerText="TDS ">
+					<h:outputText value="#{m.msTds}" />
+				</p:column>
+				<p:column headerText="TDS ">
+					<h:outputText value="#{m.msSalinidad}" />
+				</p:column>
+				<p:column headerText="Ph ">
+					<h:outputText value="#{m.msPh}" />
+				</p:column>
+				<p:column headerText="Tagua ">
+					<h:outputText value="#{m.msTagua}" />
+				</p:column>
+				<p:column headerText="T Ambiente ">
+					<h:outputText value="#{m.msTambiente}" />
+				</p:column>
+				<p:column headerText="OD ">
+					<h:outputText value="#{m.msOd}" />
+				</p:column>
+				<p:column headerText="ODPorcentaje ">
+					<h:outputText value="#{m.msOdporcentaje}" />
+				</p:column>
+				<p:column headerText="Turbiedad ">
+					<h:outputText value="#{m.msTurbiedad}" />
+				</p:column>
+				<p:column headerText="Apariencia ">
+					<h:outputText value="#{m.msApariencia}" />
+				</p:column>
+				<p:column headerText="Método  Medición ">
+					<h:outputText value="#{m.msMetodomedicion}" />
+				</p:column>
+				<p:column headerText="Medición ">
+					<h:outputText value="#{m.msMedicion}" />
+				</p:column>
+				<p:column headerText="Color ">
+					<h:outputText value="#{m.msColor}" />
+				</p:column>
+				<p:column headerText="Olor ">
+					<h:outputText value="#{m.msOlor}" />
+				</p:column>
+				<p:column headerText="Tipo ">
+					<h:outputText value="#{m.msTipo}" />
+				</p:column>
+				<p:column headerText="Valor ">
+					<h:outputText value="#{m.msValor}" />
+				</p:column>
+				<p:column headerText="Viento">
+					<p:selectBooleanCheckbox value="#{m.msViento}" />
+				</p:column>
+				<p:column headerText="Lluvia">
+					<p:selectBooleanCheckbox value="#{m.msLluvia}" />
+				</p:column>
+				<p:column headerText="Viento">
+					<p:selectBooleanCheckbox value="#{m.msViento}" />
+				</p:column>
+				<p:column headerText="Lluvia">
+					<p:selectBooleanCheckbox value="#{m.msSol}" />
+				</p:column>
+				<p:column headerText="Sol">
+					<p:selectBooleanCheckbox value="#{m.msSol}" />
+				</p:column>
+				<p:column headerText="Despejado">
+					<p:selectBooleanCheckbox value="#{m.msDespejado}" />
+				</p:column>
+				<p:column headerText="Nublado">
+					<p:selectBooleanCheckbox value="#{m.msNublado}" />
+				</p:column>
+				<p:column headerText="Basura">
+					<p:selectBooleanCheckbox value="#{m.msBasura}" />
+				</p:column>
+				<p:column headerText="Escombroso">
+					<p:selectBooleanCheckbox value="#{m.msEscombros}" />
+				</p:column>
+				<p:column headerText="Excretas">
+					<p:selectBooleanCheckbox value="#{m.msExcretas}" />
+				</p:column>
+				<p:column headerText="Cadaveres">
+					<p:selectBooleanCheckbox value="#{m.msCadaveres}" />
+				</p:column>
+				<p:column headerText="Domestico">
+					<p:selectBooleanCheckbox value="#{m.msDomestico}" />
+				</p:column>
+				<p:column headerText="Indistrial">
+					<p:selectBooleanCheckbox value="#{m.msIndustriales}" />
+				</p:column>
+				<p:column headerText="Combustible">
+					<p:selectBooleanCheckbox value="#{m.msCombustible}" />
+				</p:column>
+				<p:column headerText="Coordinador">
+					<p:selectBooleanCheckbox value="#{m.msCoordinadorresponsable}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Reporte Laboratorio</title>
+	<style type="text/css">
+.limite {
+	background-color: #c6eaa8   !important;
+	background-image: none !important;
+	color: #8B0000 !important;
+}
+
+.norma {
+	background-color: #f0c06e !important;
+	background-image: none !important;
+	color: #FFFFFF !important;
+}
+</style>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Reporte Laboratorio</f:facet>
+
+	<h:form id="analisRepForm">
+		<p:growl id="msgs" showDetail="true" />
+		<p:tabView id="tabView" dynamic="true" cache="true">
+
+			<p:tab id="tba1" title="Limites Esperados">
+				<p:panelGrid columns="4">
+					<f:facet name="header">  
+        Código del punto de muestreo:    
+          <p:commandButton value="Actualizar"
+							action="#{analisisReporteControl.init}"
+							icon="ui-icon-arrowrefresh-1-w" update=":analisRepForm" />
+					</f:facet>
+					<h:outputLabel value="Codigo: *" />
+					<p:selectOneMenu value="#{analisisReporteControl.idMuestreo}">
+						<f:selectItem itemLabel="Seleccione Ficha.." itemValue="" />
+						<f:selectItems value="#{analisisReporteControl.rhMcaMuestreoLst}"
+							var="f" itemValue="#{f.msId}" itemLabel="#{f.msCodigo}" />
+						<p:ajax update=":analisRepForm"
+							listener="#{analisisReporteControl.cargarFechas}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Fecha:"
+						rendered="#{analisisReporteControl.flag}" />
+					<p:selectOneMenu id="fecha"
+						value="#{analisisReporteControl.fechaReporte}"
+						rendered="#{analisisReporteControl.flag}">
+						<f:selectItem itemLabel="Seleccione Fecha.." itemValue="" />
+						<f:selectItems
+							value="#{analisisReporteControl.reportelaboratorioFechaLst}"
+							var="rf" itemValue="#{rf}" itemLabel="#{rf}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+				<p:panelGrid columns="4">
+					<f:facet name="header">  
+      Selección de Criterios de comparación Limites Esperados:      
+			</f:facet>
+					<h:outputLabel value="Demarcación: *" />
+					<p:selectOneMenu value="#{analisisReporteControl.demarcacion}">
+						<f:selectItem itemLabel="Seleccione Demarcación.." itemValue="" />
+						<f:selectItems value="#{analisisReporteControl.demarcacioList}"
+							var="d" itemValue="#{d}" itemLabel="#{d}" />
+					</p:selectOneMenu>
+					<h:outputLabel value="Actividad Antropogénica: *" />
+					<p:selectOneMenu value="#{analisisReporteControl.actividad}">
+						<f:selectItem itemLabel="Seleccione Actividad.." itemValue="" />
+						<f:selectItems value="#{analisisReporteControl.actividadList}"
+							var="ac" itemValue="#{ac}" itemLabel="#{ac}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+				<p:panel>
+					<f:facet name="header">  
+       Proceso:      
+			</f:facet>
+					<p:commandButton value="Consultar"
+						actionListener="#{analisisReporteControl.consultaComparacionLimites}"
+						update=":analisRepForm:msgs,:analisRepForm" />
+					<p:commandButton value="Nueva Consulta"
+						actionListener="#{analisisReporteControl.init}"
+						update=":analisRepForm" />
+				</p:panel>
+				<p:dataTable id="analisRepDT" var="a"
+					value="#{analisisReporteControl.rhMcaComparacionreportenormalimiteLst}"
+					editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+					rows="20"
+					rowStyleClass="#{(a.problemaLimites == true)? 'limite': null }">
+					<f:facet name="header">  Resultados de la comparación:     </f:facet>
+
+
+
+					<p:column headerText="Reporte"
+						filterBy="#{a.rhMcaReportelaboratorio.rptParametro}">
+						<h:outputText value="#{a.rhMcaReportelaboratorio.rptParametro}" />
+					</p:column>
+					<p:column headerText="Rpt Unidad">
+						<h:outputText value="#{a.rhMcaReportelaboratorio.rptUnidad}" />
+					</p:column>
+					<p:column headerText="Rpt Medicion">
+						<h:outputText value="#{a.rhMcaReportelaboratorio.rptMedicion}" />
+					</p:column>
+					<p:column headerText="Lim Parametro"
+						filterBy="#{a.rhMcaParametrosLimitesesperado.lespParametro}">
+						<h:outputText
+							value="#{a.rhMcaParametrosLimitesesperado.lespParametro}" />
+					</p:column>
+					<p:column headerText="Lim Unidad">
+						<h:outputText
+							value="#{a.rhMcaParametrosLimitesesperado.lespUnidad}" />
+					</p:column>
+					<p:column headerText="Lim Max">
+						<h:outputText value="#{a.rhMcaParametrosLimitesesperado.lespMax}" />
+					</p:column>
+					<p:column headerText="Lim Min">
+						<h:outputText value="#{a.rhMcaParametrosLimitesesperado.lespMin}" />
+					</p:column>
+				</p:dataTable>
+				<p:panel header="Exportar Todos los Datos">
+					<h:commandLink>
+						<p:graphicImage value="/img/export/excel.png" />
+						<p:dataExporter type="xls" target="analisRepDT"
+							fileName="comparacionLimite" />
+					</h:commandLink>
+					<h:commandLink>
+						<p:graphicImage value="/img/export/pdf.png" />
+						<p:dataExporter type="pdf" target="analisRepDT"
+							fileName="comparacionLimite" />
+					</h:commandLink>
+				</p:panel>
+
+			</p:tab>
+			<p:tab id="tba2" title="Comparación Norma">
+
+				<p:panelGrid columns="4">
+					<f:facet name="header">  
+      Selección de Criterios de comparación Norma:      
+			</f:facet>
+					<h:outputLabel value="Año de Norma:*" />
+					<p:selectOneMenu value="#{analisisReporteControl.anio}">
+						<f:selectItem itemLabel="Seleccione Año.." itemValue="" />
+						<f:selectItems value="#{analisisReporteControl.anioList}" var="y"
+							itemValue="#{y}" itemLabel="#{y}" />
+					</p:selectOneMenu>
+					<h:outputLabel value="Tipo : *" />
+					<p:selectOneMenu value="#{analisisReporteControl.tipo}"
+						style="width:70%">
+						<f:selectItem itemLabel="Seleccione Tipo.." itemValue="" />
+						<f:selectItems value="#{analisisReporteControl.tipoList}" var="t"
+							itemValue="#{t}" itemLabel="#{t.trim()}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:panel>
+					<f:facet name="header">  
+       Proceso:      
+			</f:facet>
+					<p:commandButton value="Consultar"
+						actionListener="#{analisisReporteControl.consultaComparacionNorma}"
+						update=":analisRepForm:msgs,:analisRepForm" />
+					<p:commandButton value="Nueva Consulta"
+						actionListener="#{analisisReporteControl.init}"
+						update=":analisRepForm" />
+					<p:commandButton value="Guardar"
+						title="Guarda la información Comparacion en BDD"
+						actionListener="#{analisisReporteControl.guardar}"
+						update=":analisRepForm:msgs,:analisRepForm" icon="ui-icon-disk">
+					</p:commandButton>
+
+				</p:panel>
+				<p:dataTable id="analisRepDTNorma" var="an"
+					value="#{analisisReporteControl.rhMcaComparacionreportenormalimiteLst}"
+					editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+					rows="20"
+					rowStyleClass="#{(an.problemaNorma == true)? 'norma': null }">
+					<f:facet name="header">  Resultados de la comparación:     </f:facet>
+
+
+					<p:column headerText="Reporte"
+						filterBy="#{an.rhMcaReportelaboratorio.rptParametro}">
+						<h:outputText value="#{an.rhMcaReportelaboratorio.rptParametro}" />
+					</p:column>
+					<p:column headerText="Rpt Unidad">
+						<h:outputText value="#{an.rhMcaReportelaboratorio.rptUnidad}" />
+					</p:column>
+					<p:column headerText="Rpt Medicion">
+						<h:outputText value="#{an.rhMcaReportelaboratorio.rptMedicion}" />
+					</p:column>
+					<p:column headerText="Nor Parametro"
+						filterBy="#{an.rhMcaParametrosNormavigente.norvParametro}">
+						<h:outputText
+							value="#{an.rhMcaParametrosNormavigente.norvParametro}" />
+					</p:column>
+					<p:column headerText="Norm Unidad">
+						<h:outputText value="#{an.rhMcaParametrosNormavigente.norvUnidad}" />
+					</p:column>
+					<p:column headerText="Norm Limite">
+						<h:outputText
+							value="#{an.rhMcaParametrosNormavigente.norvLimitemaximopermisible}" />
+					</p:column>
+				</p:dataTable>
+				<p:panel header="Exportar Todos los Datos">
+					<h:commandLink>
+						<p:graphicImage value="/img/export/excel.png" />
+						<p:dataExporter type="xls" target="analisRepDTNorma"
+							fileName="comparacionNorma" />
+					</h:commandLink>
+					<h:commandLink>
+						<p:graphicImage value="/img/export/pdf.png" />
+						<p:dataExporter type="pdf" target="analisRepDTNorma"
+							fileName="comparacionNorma" />
+					</h:commandLink>
+				</p:panel>
+
+			</p:tab>
+		</p:tabView>
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Licenciamiento Ambiental</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Licenciamiento Ambiental</f:facet>
+
+	<h:form id="licenciamientoAmbForm">
+		<p:growl id="msgs" showDetail="true" />
+		<p:dataTable id="licenciamientoAmbDT" var="l"
+			value="#{licenciamientoAmbientalControl.rhMgaLicenciamientoambientalList}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="5">
+
+			<f:facet name="header">  
+            Licenciamiento Ambiental:    
+           <p:commandButton value="Actualizar"
+					action="#{licenciamientoAmbientalControl.actualizar}"
+					icon="ui-icon-arrowrefresh-1-w" update=":licenciamientoAmbForm" />
+				<p:commandButton value="Guardar"
+					actionListener="#{licenciamientoAmbientalControl.guardar}"
+					update=":licenciamientoAmbForm,:licenciamientoAmbForm:msgs,:dialogWait"
+					icon="ui-icon-disk" onclick="dlgWait.show()" />
+				<p:commandButton value="Cargar Archivo"
+					action="#{licenciamientoAmbientalControl.activarCargarArchivos()}"
+					icon="ui-icon-home" update=":licenciamientoAmbForm" />
+				<p:commandButton value="Subir Archivo"
+					actionListener="#{licenciamientoAmbientalControl.guardarLista}"
+					update=":licenciamientoAmbForm,:licenciamientoAmbForm:msgs,:dialogWait"
+					icon="ui-icon-disk"
+					rendered="#{licenciamientoAmbientalControl.flagCancelarUpload}"
+					onclick="dlgWait.show()">
+					<p:confirm header="Confirmación"
+						message="Desea guardar la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<p:commandButton value="Cancelar Cargar Archivo"
+					action="#{licenciamientoAmbientalControl.cancelarCargarArchivos()}"
+					icon="ui-icon-close" update=":licenciamientoAmbForm"
+					rendered="#{licenciamientoAmbientalControl.flagCancelarUpload}" />
+
+				<p:fileUpload
+					fileUploadListener="#{licenciamientoAmbientalControl.handleFileUpload}"
+					mode="advanced" update=":licenciamientoAmbForm"
+					sizeLimit="100000000" auto="true" allowTypes="/(\.|\/)(|xls)$/"
+					rendered="#{licenciamientoAmbientalControl.flagUpload}" />
+
+				<p:commandButton value="Eliminar" icon="ui-icon-close"
+					action="#{licenciamientoAmbientalControl.eliminarAll}"
+					update=":licenciamientoAmbForm,:licenciamientoAmbForm:msgs,:dialogWait"
+					onclick="dlgWait.show()">
+					<p:confirm header="Confirmación"
+						message="Desea eliminar la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+
+
+			</f:facet>
+			<p:columnGroup type="header">
+				<p:row>
+					<p:column rowspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.n} "
+						style="width: 10px;" />
+					<p:column rowspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.proyecto} "
+						style="width: 50px;" />
+					<p:column rowspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.demarcacionResponsable} " />
+					<p:column rowspan="2"
+						headerText=" #{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.autoridadAmbientalResponsable} " />
+					<p:column rowspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.faseProyecto} " />
+					<p:column colspan="3"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.certificadointerseccion}" />
+					<p:column colspan="3"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.categorizacion} " />
+					<p:column colspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.terminosDeReferencia} " />
+					<p:column colspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.elaboraciondelBorradorEiaFichaAmbiental}" />
+					<p:column colspan="3"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.participacionSocial} " />
+					<p:column colspan="4"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.estudioDeImpactoAmbientalEsiaFinal}" />
+					<p:column colspan="2"
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.faseDeEmisionDeLicencia}" />
+				</p:row>
+				<p:row>
+					<p:column
+						headerText=" #{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioSolicitudCertificadoInterseccion} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioCertificadoInterseccion} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.intersectaConAreasprotegidasSiNo} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioSolicitudCertificadoCategorizacion}" />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioCategorizacionMae} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.categoriaProyecto_abc_i} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioDeSolicitudAprobacionDetdrs} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.oficioDAprobacionDlosTdrs} " />
+					<p:column headerText="Consultora" />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.tiempoEstimadoDeElaboracionEia_fichAmbiental} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.solicitudDeFacilidador} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.respuestaDelMaeAsolicitudDefacilitador} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.entregaAlMaeDelInformeDfacilitador} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.entregaDelEsiaPorParteDsenagua} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.respuestaDelmae} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.respuestaAobservacionesPorparteDsenagua} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.aprobaciondelEsiaPorParteDelMae} " />
+					<p:column
+						headerText="#{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.pagoDeTasas} " />
+					<p:column
+						headerText=" #{licenciamientoAmbientalControl.menuLicenciamientoAmbiental.emisionDeLicenciAmbiental}" />
+
+
+				</p:row>
+			</p:columnGroup>
+			<p:column exportable="false">
+				<p:cellEditor style="width: 10px;">
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_n}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_n}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_proyecto}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_proyecto}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_demarcacionresponsable}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_demarcacionresponsable}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_autoridadresponsable}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_autoridadresponsable}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_faseproyecto}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_faseproyecto}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_certificadointerseccion_oficiosolicitudcertificadointersecc}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_certificadointerseccion_oficiosolicitudcertificadointersecc}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_certificadointerseccionoficiocertificadointerseccion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_certificadointerseccionoficiocertificadointerseccion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_certificadointerseccionintersectaconareasprotegidassino}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_certificadointerseccionintersectaconareasprotegidassino}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_categorizacion_oficiosolicitudcertificadoccategorizacion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_categorizacion_oficiosolicitudcertificadoccategorizacion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_categorizacion_oficiocategorizacionmae}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_categorizacion_oficiocategorizacionmae}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_categorizacion_categoriaproyecto}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_categorizacion_categoriaproyecto}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_terminosreferencia_oficiosolicitudaprobaciontdrs}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_terminosreferencia_oficiosolicitudaprobaciontdrs}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_terminosreferencia_oficioaprobaciontdrs}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_terminosreferencia_oficioaprobaciontdrs}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_elaboracionborradoreiaficha_ambiental_consultora}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_elaboracionborradoreiaficha_ambiental_consultora}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_elaboracionborradoreiaficha_ambiental_consultora}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_elaboracionborradoreiaficha_ambiental_tiempoestimadoelabora}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_participacionsocial_solicitudfacilidador}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_participacionsocial_solicitudfacilidador}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_participacionsocial_respuestamaesolicitudfacilitador}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_participacionsocial_respuestamaesolicitudfacilitador}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_participacionsocial_entregamaeinformefacilitador}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_participacionsocial_entregamaeinformefacilitador}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_entregaesiapartesenagua}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_entregaesiapartesenagua}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_respuestamae}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_respuestamae}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_respuestaobservacionespart}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_respuestaobservacionespart}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_aprobacionesiapartemae}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_estudioimpactoambientalesiafinal_aprobacionesiapartemae}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{l.lic_faseemisionlicencia_pagotasas}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{l.lic_faseemisionlicencia_pagotasas}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText
+							value="#{l.lic_faseemisionlicencia_emisionlicenciaambiental}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText
+							value="#{l.lic_faseemisionlicencia_emisionlicenciaambiental}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Edición">
+				<p:commandButton title="Eliminar" icon="ui-icon-close"
+					action="#{licenciamientoAmbientalControl.eliminar}"
+					update=":licenciamientoAmbForm,:licenciamientoAmbForm:msgs">
+					<f:setPropertyActionListener
+						target="#{licenciamientoAmbientalControl.rhMgaLicenciamientoambiental}"
+						value="#{l}" />
+					<p:confirm header="Confirmación"
+						message="Desea eliminar la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:commandButton value="Exportar Informacion" icon="ui-icon-copy"
+			onclick="PF('exp').show();" update=":fichaMOvilForm"></p:commandButton>
+
+
+	</h:form>
+
+	<p:dialog id="modalDialogExp" header="Exportar Todos los Datos"
+		widgetVar="exp" modal="true" height="100">
+		<h:form id="fichaMOvilForm">
+			<h:panelGrid column="4">
+				<p:graphicImage value="/img/export/excel.png" />
+				<p:commandLink value="Excel" ajax="false">
+					<p:fileDownload
+						value="#{reportesControlador.selectedFileExcelMgaLicenciamientoAmbiental}" />
+				</p:commandLink>
+				<p:graphicImage value="/img/export/pdf.png" />
+				<p:commandLink value="PDF" ajax="false">
+					<p:fileDownload
+						value="#{reportesControlador.selectedFilePdfMgaLicenciamientoAmbiental}" />
+				</p:commandLink>
+
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	
+	
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{licenciamientoAmbientalControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+
+</h:body>
+
+</html>

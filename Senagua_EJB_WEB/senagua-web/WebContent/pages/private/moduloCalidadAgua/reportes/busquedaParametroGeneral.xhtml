@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Parametros Busqueda General</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Parametros Busqueda General</f:facet>
+
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+
+
+
+		<p:dataTable id="reporte" var="r"
+			value="#{reporteBusquedaParametroGeneral.vwCalidadGenerals}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+            Reportes:            
+			</f:facet>
+			<p:column headerText="codigo_muestreo" filterBy="#{r.codigoMuestreo}">
+				<p:outputLabel value="#{r.codigoMuestreo}" />
+			</p:column>
+			<p:column headerText="codigo_punto" filterBy="#{r.codigoPunto}">
+				<p:outputLabel value="#{r.codigoPunto}" />
+			</p:column>
+			<p:column headerText="provincia" filterBy="#{r.provincia}">
+				<p:outputLabel value="#{r.provincia}" />
+			</p:column>
+			<p:column headerText="canton" filterBy="#{r.canton}">
+				<p:outputLabel value="#{r.canton}" />
+			</p:column>
+			<p:column headerText="parroquia" filterBy="#{r.parroquia}">
+				<p:outputLabel value="#{r.parroquia}" />
+			</p:column>
+			<p:column headerText="demarcacion" filterBy="#{r.demarcacion}">
+				<p:outputLabel value="#{r.demarcacion}" />
+			</p:column>
+			<p:column headerText="nombre_sitio" filterBy="#{r.nombreSitio}">
+				<p:outputLabel value="#{r.nombreSitio}" />
+			</p:column>
+			<p:column headerText="fuente" filterBy="#{r.fuente}">
+				<p:outputLabel value="#{r.fuente}" />
+			</p:column>
+			<p:column headerText="rg_rutaacceso" filterBy="#{r.rgRutaacceso}">
+				<p:outputLabel value="#{r.rgRutaacceso}" />
+			</p:column>
+			<p:column headerText="cod_unid_hidrografica"
+				filterBy="#{r.codUnidHidrografica}">
+				<p:outputLabel value="#{r.codUnidHidrografica}" />
+			</p:column>
+			<p:column headerText="unidad_hidrografica"
+				filterBy="#{r.unidadHidrografica}">
+				<p:outputLabel value="#{r.unidadHidrografica}" />
+			</p:column>
+			<p:column headerText="fecha_muestreo" filterBy="#{r.fechaMuestreo}">
+				<p:outputLabel value="#{r.fechaMuestreo}" />
+			</p:column>
+			<p:column headerText="fecha_inspeccion"
+				filterBy="#{r.fechaInspeccion}">
+				<p:outputLabel value="#{r.fechaInspeccion}" />
+			</p:column>
+			<p:column headerText="hora_inspeccion" filterBy="#{r.horaInspeccion}">
+				<p:outputLabel value="#{r.horaInspeccion}" />
+			</p:column>
+			<p:column headerText="tipo_muestra" filterBy="#{r.tipoMuestra}">
+				<p:outputLabel value="#{r.tipoMuestra}" />
+			</p:column>
+
+
+		</p:dataTable>
+
+
+		<p:commandButton value="Exportar Informacion" icon="ui-icon-copy"
+			onclick="PF('exp').show();"></p:commandButton>
+
+		<p:dialog id="modalDialogExp" header="Exportar Todos los Datos"
+			widgetVar="exp" modal="true" height="100">
+			<h:panelGrid column="4">
+				<p:graphicImage value="/img/export/excel.png" />
+				<p:commandLink value="Excel" ajax="false">
+					<p:dataExporter type="xls" target="reporte"
+						fileName="Busqueda_Parametros" />
+				</p:commandLink>
+				<p:graphicImage value="/img/export/pdf.png" />
+				<p:commandLink value="Pdf" ajax="false">
+					<p:dataExporter type="pdf" target="reporte"
+						fileName="Busqueda_Parametros" />
+				</p:commandLink>
+
+
+			</h:panelGrid>
+
+
+		</p:dialog>
+
+
+
+	</h:form>
+
+
+
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{registroInformacionControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+
+</html>

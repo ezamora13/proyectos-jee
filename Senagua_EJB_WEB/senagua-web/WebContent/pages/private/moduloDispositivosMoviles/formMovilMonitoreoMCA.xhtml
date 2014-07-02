@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Formulario Dispositivos Móviles Calidad del Agua</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Formulario Dispositivos Móviles Monitoreo</f:facet>
+
+	<h:form id="formularioDMovil">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="reporteLabDT" var="m"
+			value="#{formularioMovilMonitoreoControl.rhMcaMuestreos}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">             
+Selección Asignación Código Muestreo:
+  <p:commandButton value="Anadir"
+					actionListener="#{formularioMovilMonitoreoControl.anadir}"
+					update=":formularioDMovil" icon="ui-icon-star" />
+				<p:commandButton value="Actualizar"
+					action="#{formularioMovilMonitoreoControl.init}"
+					icon="ui-icon-arrowrefresh-1-w" update=":formularioDMovil" />
+
+			</f:facet>
+
+			<p:column headerText="Numero Ficha">
+				<p:outputLabel value="#{m.rhTabletRegistro.rgNumeroficha}" />
+			</p:column>
+			<p:column headerText="Fecha">
+				<p:outputLabel value="#{m.rhTabletRegistro.rgFecha}" />
+			</p:column>
+			<p:column headerText="Coordenada X">
+				<p:outputLabel value="#{m.rhTabletRegistro.rgCoordenadax}" />
+			</p:column>
+			<p:column headerText="Coordenada Y">
+				<p:outputLabel value="#{m.rhTabletRegistro.rgCoordenaday}" />
+			</p:column>
+			<p:column headerText="Id">
+				<p:outputLabel value="#{m.msId}" />
+			</p:column>
+			<p:column headerText="Código">
+				<p:outputLabel value="#{m.msCodigo}" />
+			</p:column>
+			<p:column headerText="Fecha">
+				<p:outputLabel value="#{m.msFecha}" />
+			</p:column>
+			<p:column headerText="Observación">
+				<p:outputLabel value="#{m.msObservacion}" />
+			</p:column>
+			<p:column headerText="Demarcación">
+				<p:outputLabel value="#{m.msIddemarcacion}" />
+			</p:column>
+			<p:column headerText="Tipo Muestra">
+				<p:outputLabel value="#{m.msIdtipomuestra}" />
+			</p:column>
+			<p:column headerText="Numero Ficha">
+				<p:outputLabel value="#{m.rgNumeroficha}" />
+			</p:column>
+			<p:column headerText="Riego">
+				<p:outputLabel value="#{m.msIdriego}" />
+			</p:column>
+			<p:column headerText="Campania">
+				<p:outputLabel value="#{m.msCampania}" />
+			</p:column>
+			<p:column headerText="Registrado ">
+				<p:outputLabel value="#{m.msRegsitradopor}" />
+			</p:column>
+			<p:column headerText="Monitoreado ">
+				<p:outputLabel value="#{m.msMonitoreadopor}" />
+			</p:column>
+			<p:column headerText="Conductividad ">
+				<p:outputLabel value="#{m.msConductividad}" />
+			</p:column>
+			<p:column headerText="TDS ">
+				<p:outputLabel value="#{m.msTds}" />
+			</p:column>
+			<p:column headerText="TDS ">
+				<p:outputLabel value="#{m.msSalinidad}" />
+			</p:column>
+			<p:column headerText="Ph ">
+				<p:outputLabel value="#{m.msPh}" />
+			</p:column>
+			<p:column headerText="Tagua ">
+				<p:outputLabel value="#{m.msTagua}" />
+			</p:column>
+			<p:column headerText="T Ambiente ">
+				<p:outputLabel value="#{m.msTambiente}" />
+			</p:column>
+			<p:column headerText="OD ">
+				<p:outputLabel value="#{m.msOd}" />
+			</p:column>
+			<p:column headerText="ODPorcentaje ">
+				<p:outputLabel value="#{m.msOdporcentaje}" />
+			</p:column>
+			<p:column headerText="Turbiedad ">
+				<p:outputLabel value="#{m.msTurbiedad}" />
+			</p:column>
+			<p:column headerText="Apariencia ">
+				<p:outputLabel value="#{m.msApariencia}" />
+			</p:column>
+			<p:column headerText="Método  Medición ">
+				<p:outputLabel value="#{m.msMetodomedicion}" />
+			</p:column>
+			<p:column headerText="Medición ">
+				<p:outputLabel value="#{m.msMedicion}" />
+			</p:column>
+			<p:column headerText="Color ">
+				<p:outputLabel value="#{m.msColor}" />
+			</p:column>
+			<p:column headerText="Olor ">
+				<p:outputLabel value="#{m.msOlor}" />
+			</p:column>
+			<p:column headerText="Tipo ">
+				<p:outputLabel value="#{m.msTipo}" />
+			</p:column>
+			<p:column headerText="Valor ">
+				<p:outputLabel value="#{m.msValor}" />
+			</p:column>
+			<p:column headerText="Viento">
+				<p:selectBooleanCheckbox value="#{m.msViento}" />
+			</p:column>
+			<p:column headerText="Lluvia">
+				<p:selectBooleanCheckbox value="#{m.msLluvia}" />
+			</p:column>
+			<p:column headerText="Sol">
+				<p:selectBooleanCheckbox value="#{m.msSol}" />
+			</p:column>
+			<p:column headerText="Despejado">
+				<p:selectBooleanCheckbox value="#{m.msDespejado}" />
+			</p:column>
+			<p:column headerText="Nublado">
+			</p:column>
+			<p:column headerText="Basura">
+				<p:selectBooleanCheckbox value="#{m.msBasura}" />
+			</p:column>
+			<p:column headerText="Escombroso">
+				<p:selectBooleanCheckbox value="#{m.msEscombros}" />
+			</p:column>
+			<p:column headerText="Excretas">
+				<p:selectBooleanCheckbox value="#{m.msExcretas}" />
+			</p:column>
+			<p:column headerText="Cadaveres">
+				<p:selectBooleanCheckbox value="#{m.msCadaveres}" />
+			</p:column>
+			<p:column headerText="Domestico">
+				<p:selectBooleanCheckbox value="#{m.msDomestico}" />
+			</p:column>
+			<p:column headerText="Industrial">
+				<p:selectBooleanCheckbox value="#{m.msIndustriales}" />
+			</p:column>
+			<p:column headerText="Combustible">
+				<p:selectBooleanCheckbox value="#{m.msCombustible}" />
+			</p:column>
+			<p:column headerText="Coordinador">
+				<p:outputLabel value="#{m.msCoordinadorresponsable}" />
+			</p:column>
+			<p:column headerText="Edición ">
+				<p:commandButton title="Editar" update=":fichaMonitoreoForm"
+					icon="ui-icon-pencil" onclick="PF('dlg').show();">
+					<f:setPropertyActionListener
+						target="#{formularioMovilMonitoreoControl.rhMcaMuestreo}"
+						value="#{m}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+	<p:dialog id="modalDialog" header="Monitoreo: Ficha  " widgetVar="dlg"
+		modal="true" height="500">
+		<h:form id="fichaMonitoreoForm">
+			<p:growl id="msgs2" showDetail="true" />
+			<p:panelGrid columns="6">
+				<f:facet name="header">
+					
+						Datos Monitoreo
+						<p:commandButton value="Guardar" title="Guardar Monitoreo"
+						update=":fichaMonitoreoForm,:fichaMonitoreoForm:msgs2,:formularioDMovil,:dialogWait"
+						action="#{formularioMovilMonitoreoControl.guardarMonitoreo}"
+						icon="ui-icon-disk" onclick="dlgWait.show()">
+
+					</p:commandButton>
+
+				</f:facet>
+				<p:outputLabel value="Código" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msCodigo}" />
+				<p:outputLabel value="Fecha" />
+				<p:calendar
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msFecha}" />
+				<p:outputLabel value="Observación" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msObservacion}" />
+				<p:outputLabel value="Demarcación" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msIddemarcacion}" />
+				<p:outputLabel value="Tipo Muestra" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msIdtipomuestra}" />
+				<p:outputLabel value="Numero Ficha" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.rgNumeroficha}" />
+				<p:outputLabel value="Riego" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msIdriego}" />
+				<p:outputLabel value="Campania" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msCampania}" />
+				<p:outputLabel value="Registrado " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msRegsitradopor}" />
+				<p:outputLabel value="Monitoreado " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msMonitoreadopor}" />
+				<p:outputLabel value="Conductividad " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msConductividad}" />
+				<p:outputLabel value="TDS " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msTds}" />
+				<p:outputLabel value="Salinidad " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msSalinidad}" />
+				<p:outputLabel value="Ph " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msPh}" />
+				<p:outputLabel value="Tagua" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msTagua}" />
+				<p:outputLabel value="TAmbiente " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msTambiente}" />
+				<p:outputLabel value="OD " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msOd}" />
+				<p:outputLabel value="ODPorcentaje" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msOdporcentaje}" />
+				<p:outputLabel value="Turbiedad " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msTurbiedad}" />
+				<p:outputLabel value="Apariencia " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msApariencia}" />
+				<p:outputLabel value="MétodoMedición " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msMetodomedicion}" />
+				<p:outputLabel value="Medición " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msMedicion}" />
+				<p:outputLabel value="Color " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msColor}" />
+				<p:outputLabel value="Olor " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msOlor}" />
+				<p:outputLabel value="Tipo " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msTipo}" />
+				<p:outputLabel value="Valor " />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msValor}" />
+				<p:outputLabel value="Viento" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msViento}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Lluvia" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msLluvia}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Sol" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msSol}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Despejado" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msDespejado}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Nublado" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msNublado}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Basura" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msBasura}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Escombroso" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msEscombros}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Excretas" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msExcretas}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Cadaveres" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msCadaveres}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Domestico" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msDomestico}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Industrial" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msIndustriales}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Combustible" />
+				<p:selectOneMenu
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msCombustible}">
+					<f:selectItem itemLabel="Escoja una Opción.." itemValue="" />
+					<f:selectItem itemLabel="Si" itemValue="true" />
+					<f:selectItem itemLabel="No" itemValue="false" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Coordinador" />
+				<p:inputText
+					value="#{formularioMovilMonitoreoControl.rhMcaMuestreo.msCoordinadorresponsable}" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
+
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{formularioMovilMonitoreoControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+
+</h:body>
+
+</html>

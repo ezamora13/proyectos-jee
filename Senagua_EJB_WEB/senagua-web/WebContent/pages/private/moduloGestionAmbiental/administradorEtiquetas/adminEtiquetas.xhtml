@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Contaminacion Ambiental</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Contaminacion Ambiental</f:facet>
+
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:panelGrid columns="2">
+			<f:facet name="header">  
+       Objetivo del Indicador: 
+       <p:commandButton value="Actualizar"
+					action="#{administradorEtiquetasControl.init()}"
+					icon="ui-icon-arrowrefresh-1-w" update=":form" />
+
+			</f:facet>
+			<p:outputLabel value="Escoja Tabla:" />
+			<p:selectOneMenu value="#{administradorEtiquetasControl.id}">
+				<f:selectItem itemLabel="Escoja una Opción:" />
+				<f:selectItems
+					value="#{administradorEtiquetasControl.rhParametroSistemas}"
+					var="p" itemValue="#{p.prId}" itemLabel="#{p.prDescripcion}" />
+				<p:ajax update=":form"
+					listener="#{administradorEtiquetasControl.cargarDatosMenu}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+
+		<h:panelGroup id="edicion"
+			rendered="#{administradorEtiquetasControl.flag}">
+			<p:dataTable id="datoMenu" var="m"
+				value="#{administradorEtiquetasControl.rhParametroSistemaMenus}"
+				editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+				rows="15">
+				<f:facet name="header">  
+          DETALLE CABECERAS DEL MENÚ   
+          
+          <p:commandButton value="Guardar"
+						actionListener="#{administradorEtiquetasControl.guardar}"
+						update=":form,:form:msgs,:dialogWait"
+						icon="ui-icon-disk" onclick="dlgWait.show()" />
+				</f:facet>
+				<p:column headerText="Id">
+					<h:outputText value="#{m.prId}" />
+				</p:column>
+				<p:column headerText="Cabecera">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{m.prDescripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{m.prDescripcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+
+
+
+
+	</h:form>
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{administradorEtiquetasControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+
+</h:body>
+
+</html>

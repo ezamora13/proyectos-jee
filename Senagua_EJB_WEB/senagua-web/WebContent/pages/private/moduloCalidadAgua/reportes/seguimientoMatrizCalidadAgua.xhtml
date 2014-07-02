@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Seguimeinto Matriz Calidad del Agua</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Seguimiento Matriz Calidad del Agua</f:facet>
+
+	<h:form id="matrizCalidadForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="reporteLabDT" var="m"
+			value="#{seguimientoMatrizCalidadAguaControl.rhMcaComparacionreportenormalimiteLst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+           Matriz Calidad del Agua:   
+           <p:commandButton value="Actualizar"
+					action="#{seguimientoMatrizCalidadAguaControl.init}"
+					icon="ui-icon-arrowrefresh-1-w" update=":matrizCalidadForm" />
+			</f:facet>
+
+			<p:column headerText="Coordenada X">
+				<p:outputLabel
+					value="#{m.rhMcaReportelaboratorio.rhMcaMuestreo.rhTabletRegistro.rgCoordenadax}" />
+			</p:column>
+			<p:column headerText="Coordenada Y">
+				<p:outputLabel
+					value="#{m.rhMcaReportelaboratorio.rhMcaMuestreo.rhTabletRegistro.rgCoordenaday}" />
+			</p:column>
+			<p:column headerText="Rotulacion Cliente">
+				<p:outputLabel
+					value="#{m.rhMcaReportelaboratorio.rptRotulacioncliente}" />
+			</p:column>
+			<p:column headerText="Rotulacion Gruentec">
+				<p:outputLabel
+					value="#{m.rhMcaReportelaboratorio.rptRotulaciongruentec}" />
+			</p:column>
+			<p:column headerText="Grupo">
+				<p:outputLabel value="#{m.rhMcaReportelaboratorio.rptGrupo}" />
+			</p:column>
+			<p:column headerText="Parametro">
+				<p:outputLabel value="#{m.rhMcaReportelaboratorio.rptParametro}" />
+			</p:column>
+			<p:column headerText="Medicion">
+				<p:outputLabel value="#{m.rhMcaReportelaboratorio.rptMedicion}" />
+			</p:column>
+			<p:column headerText="Unidad">
+				<p:outputLabel value="#{m.rhMcaReportelaboratorio.rptUnidad}" />
+			</p:column>
+			<p:column headerText="Max">
+				<p:outputLabel value="#{m.rhMcaParametrosLimitesesperado.lespMax}" />
+			</p:column>
+			<p:column headerText="Min">
+				<p:outputLabel value="#{m.rhMcaParametrosLimitesesperado.lespMin}" />
+			</p:column>
+
+
+		</p:dataTable>
+
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

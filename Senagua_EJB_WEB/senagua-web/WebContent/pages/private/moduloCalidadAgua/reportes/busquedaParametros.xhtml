@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Formulario Dispositivos Móviles Calidad del Agua</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Formulario Dispositivos Móviles</f:facet>
+
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:panelGrid columns="2">
+			<f:facet name="header">  
+        Codigo de Ficha:      
+			</f:facet>
+			<h:outputLabel value="Provincia: " />
+			<p:selectOneMenu value="#{reporteBusquedaParametros.codProvincia}"
+				filter="true">
+				<f:selectItem itemLabel="Seleccione una opcion.." itemValue="" />
+				<f:selectItems value="#{reporteBusquedaParametros.dpaParroquias}"
+					var="p" itemValue="#{p.dpaDespro}" itemLabel="#{p.dpaProvin}" />
+				<p:ajax update=":form"
+					listener="#{reporteBusquedaParametros.cargaCanton}" />
+			</p:selectOneMenu>
+			<h:outputLabel value="Codigo: " />
+			<p:selectOneMenu value="#{reporteBusquedaParametros.idRegTablet}"
+				filter="true">
+				<f:selectItem itemLabel="Seleccione una opcion.." itemValue="" />
+				<f:selectItems
+					value="#{reporteBusquedaParametros.rhMcaMuestreosLst}" var="f"
+					itemValue="#{f.rhTabletRegistro.rgId}" itemLabel="#{f.msCodigo}" />
+				<p:ajax update=":form"
+					listener="#{reporteBusquedaParametros.cargaInformacionCodigo}" />
+			</p:selectOneMenu>
+			<h:outputLabel value="Sector Sitio: " />
+			<p:selectOneMenu value="#{reporteBusquedaParametros.idRegTablet}"
+				filter="true">
+				<f:selectItem itemLabel="Seleccione una opcion.." itemValue="" />
+				<f:selectItems
+					value="#{reporteBusquedaParametros.rhTabletRegistros}" var="t"
+					itemValue="#{t.rgId}" itemLabel="#{t.rgSitiosector}" />
+				<p:ajax update=":form"
+					listener="#{reporteBusquedaParametros.cargaInformacionCodigo}" />
+			</p:selectOneMenu>
+
+		</p:panelGrid>
+
+		<p:panelGrid columns="6">
+			<f:facet name="header">  
+  Coordenadas  
+						</f:facet>
+			<h:outputLabel value="Coordenada Este:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgCoordenadax}" />
+			<h:outputLabel value="Coordenada Norte:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgCoordenaday}" />
+			<h:outputLabel value="Altura:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgAltura}" />
+			<h:outputLabel value="Sitio Sector:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgSitiosector}" />
+			<h:outputLabel value="Ruta:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgRutaacceso}" />
+			<h:outputLabel value="Nombre de la Fuente:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rgNombrefuente}" />
+		</p:panelGrid>
+		<p:panelGrid columns="6">
+			<f:facet name="header">  
+  Ubicación e Información de la fuente    
+						</f:facet>
+			<h:outputLabel value="Provincia:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_provincia}" />
+			<h:outputLabel value="Cantón:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_canton}" />
+			<h:outputLabel value="Parroquia:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_parroquia}" />
+			<p:outputLabel value="Demarcación Hidrográfica:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_demarcacion}" />
+			<p:outputLabel value="Código:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_codpfafsteter}" />
+			<p:outputLabel value="Unidad Hidrográfica Pfafstetter:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_pfafsteter}" />
+			<p:outputLabel value="Cuenca:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_cuenca}" />
+			<p:outputLabel value="Sub Cuenca:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_subcuenca}" />
+			<p:outputLabel value="Micro Cuenca:" />
+			<p:outputLabel
+				value="#{reporteBusquedaParametros.rhTabletRegistro.rg_microcuenca}" />
+		</p:panelGrid>
+
+		<p:panelGrid columns="7">
+			<f:facet name="header">  
+        Parametros de Consulta:      
+			</f:facet>
+			<h:outputLabel value="Parametros: " />
+			<p:selectCheckboxMenu
+				value="#{reporteBusquedaParametros.selectedParametros}"
+				label="Seleccion de parametros" filter="true"
+				filterMatchMode="startsWith" panelStyle="width:250px">
+				<f:selectItems value="#{reporteBusquedaParametros.parametros}" />
+			</p:selectCheckboxMenu>
+
+			<h:outputLabel value="Condicionante: " />
+			<p:selectOneMenu value="#{reporteBusquedaParametros.condicionante}"
+				filter="true">
+				<f:selectItem itemLabel="Seleccione una opcion.." itemValue="" />
+				<f:selectItems value="#{reporteBusquedaParametros.condicionantes}"
+					var="c" itemValue="#{c}" itemLabel="#{c}" />
+			</p:selectOneMenu>
+			<h:outputLabel value="valor: " />
+			<h:inputText value="#{reporteBusquedaParametros.valor}"
+				disabled="#{reporteBusquedaParametros.flagValor}" />
+			<p:commandButton value="Consultar"
+				action="#{reporteBusquedaParametros.consultar}" update=":form"
+				icon="ui-icon-search"
+				disabled="#{reporteBusquedaParametros.flagValor}"></p:commandButton>
+		</p:panelGrid>
+
+		<p:dataTable id="reporteLabDT" var="r"
+			value="#{reporteBusquedaParametros.rhMcaReportelaboratoriosList}"
+			rendered="#{reporteBusquedaParametros.flagConsulta}" editable="true"
+			editMode="cell" widgetVar="zTable" paginator="true" rows="20">
+			<f:facet name="header">  
+            Reportes:            
+			</f:facet>
+			<p:column headerText="Id">
+				<p:outputLabel value="#{r.rptId}" />
+			</p:column>
+			<p:column headerText="Rotulacion Laboratorio">
+				<p:outputLabel value="#{r.rptRotulaciongruentec}" />
+			</p:column>
+			<p:column headerText="Cod. Muestreo"
+				filterBy="#{r.rptRotulacioncliente}">
+				<p:outputLabel value="#{r.rptRotulacioncliente}" />
+			</p:column>
+			<p:column headerText="Proyecto" filterBy="#{r.rptProyecto}">
+				<p:outputLabel value="#{r.rptProyecto}" />
+			</p:column>
+			<p:column headerText="Fecha Muestreo"
+				filterBy="#{r.rptFechamuestreo}">
+				<p:outputLabel value="#{r.rptFechamuestreo}" />
+			</p:column>
+			<p:column headerText="Fecha Ingreso">
+				<p:outputLabel value="#{r.rptFechaingreso}" />
+			</p:column>
+			<p:column headerText="Grupo">
+				<p:outputLabel value="#{r.rptGrupo}" />
+			</p:column>
+			<p:column headerText="Parametros" filterBy="#{r.rptParametro}">
+				<p:outputLabel value="#{r.rptParametro}" />
+			</p:column>
+			<p:column headerText="Medición">
+				<p:outputLabel value="#{r.rptMedicion}" />
+			</p:column>
+			<p:column headerText="Unidad">
+				<p:outputLabel value="#{r.rptUnidad}" />
+			</p:column>
+			<p:column headerText="Fecha Análisis">
+				<p:outputLabel value="#{r.rptFechaAnalisis}" />
+			</p:column>
+			<p:column headerText="Limite Detección">
+				<p:outputLabel value="#{r.rptLimiteDeteccion}" />
+			</p:column>
+			<p:column headerText="Limite Cuantificación">
+				<p:outputLabel value="#{r.rptLimiteCuantificacion}" />
+			</p:column>
+			<p:column headerText="Metodo">
+				<p:outputLabel value="#{r.rptMetodoReferencia}" />
+			</p:column>
+			<p:column headerText="Cliente">
+				<p:outputLabel value="#{r.rptCliente}" />
+			</p:column>
+			<p:column headerText="Tipo">
+				<p:outputLabel value="#{r.rptTipoMuestra}" />
+			</p:column>
+			<p:column headerText="Limite Maximo">
+				<p:outputLabel value="#{r.rptLimitemaximopermisible}" />
+			</p:column>
+			<p:column headerText="Rango">
+				<p:outputLabel value="#{r.rptRango}" />
+			</p:column>
+			<p:column headerText="Estado ">
+				<p:outputLabel value="#{r.rptEstadoparametro}" />
+			</p:column>
+		</p:dataTable>
+
+
+
+
+	</h:form>
+
+
+
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{registroInformacionControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+
+</html>

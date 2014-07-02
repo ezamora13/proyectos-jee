@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Carga Norma Vigente</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Norma Vigente</f:facet>
+
+	<h:form id="normaVigenteForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="normaVigenteDT" var="n"
+			value="#{normaVigenteControl.rhMcaParametrosNormavigenteLst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+           Norma Vigente:   
+           <p:commandButton value="Actualizar"
+					action="#{normaVigenteControl.actualizar()}"
+					icon="ui-icon-arrowrefresh-1-w" update=":normaVigenteForm" />
+				<p:commandButton value="Guardar" title="Guarda la información de la tabla"
+					actionListener="#{normaVigenteControl.guardar}"
+					update=":normaVigenteForm,:normaVigenteForm:msgs"
+					icon="ui-icon-disk" />
+				<p:commandButton value="Cargar Archivo"
+					action="#{normaVigenteControl.activarCargarArchivos()}"
+					icon="ui-icon-home" update=":normaVigenteForm" />
+				<p:commandButton value="Guardar Archivo"
+					actionListener="#{normaVigenteControl.guardarLista}"
+					update=":normaVigenteForm,:normaVigenteForm:msgs"
+					icon="ui-icon-disk"
+					rendered="#{normaVigenteControl.flagCancelarUpload}">
+					<p:confirm header="Confirmación"
+						message="Desea sobrescribir la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<p:commandButton value="Cancelar Cargar Archivo"
+					action="#{normaVigenteControl.cancelarCargarArchivos()}"
+					icon="ui-icon-close" update=":normaVigenteForm"
+					rendered="#{normaVigenteControl.flagCancelarUpload}" />
+				<p:fileUpload
+					fileUploadListener="#{normaVigenteControl.handleFileUpload}"
+					mode="advanced" update=":normaVigenteForm" sizeLimit="100000000"
+					auto="true" allowTypes="/(\.|\/)(|xls)$/"
+					rendered="#{normaVigenteControl.flagUpload}" />
+
+			</f:facet>
+
+			<p:column headerText="Id">
+				<p:outputLabel value="#{n.norvId}" />
+			</p:column>
+			<p:column headerText="Año">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvAnio}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvAnio}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Estado">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel
+							value="#{(n.norvEstado == true)?'Activo':'Desactivado' }" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectBooleanCheckbox value="#{n.norvEstado}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Cod. Norma">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvCodtipo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvCodtipo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Tab. Norma" filterBy="#{n.norvTipo}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvTipo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvTipo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Cod. Parámetro">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvCodparametro}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvCodparametro}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Parámetro" filterBy="#{n.norvParametro}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvParametro}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvParametro}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Cod. Asociado">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvCodigo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvCodigo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Unidad">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvUnidad}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvUnidad}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Lim Max">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{n.norvLimitemaximopermisible}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{n.norvLimitemaximopermisible}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

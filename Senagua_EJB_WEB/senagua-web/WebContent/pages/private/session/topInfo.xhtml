@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<p:idleMonitor timeout="10" onidle="idleDialog.show()"
+		onactive="idleDialog.hide()" />
+	<p:dialog header="Control de sesión." resizable="false"
+		widgetVar="idleDialog" modal="true" width="400">
+		<h:outputText
+			value="Estimado funcionario, ¿ha dejado de trabajar en el sistema?" />
+	</p:dialog>
+</h:body>
+</html>
+
+
+

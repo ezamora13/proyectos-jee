@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../../css/base.css"
+		media="screen" />
+	<link rel="stylesheet" type="text/css" href="../../css/contenido.css"
+		media="screen" />
+</h:head>
+
+<h:body>
+	<p:dialog id="popup_criterio_busqueda_id"
+		widgetVar="popup_criterio_busqueda" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_error">
+							<p class="pop-up_titulo">Error</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Ingrese criterios de búsqueda.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_criterio_busqueda.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog id="popup_succ_delete_id" widgetVar="popup_succ_delete"
+		modal="true" showHeader="false" closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Informativo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Información eliminada de manera exitosa.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_succ_delete.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+	<p:dialog id="popup_sin_resultados_id" widgetVar="popup_sin_resultados"
+		modal="true" showHeader="false" closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Informativo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								No se encontraron resultados para la búsqueda solicitada.<br />
+								<br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_sin_resultados.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+
+
+	<p:dialog id="popup_error_formulario_id"
+		widgetVar="popup_error_formulario" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_error">
+							<p class="pop-up_titulo">Error</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Existen errores en el formulario. Por favor revisar.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_error_formulario.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog id="popup_error_eliminacion_id"
+		widgetVar="popup_error_eliminacion" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_error">
+							<p class="pop-up_titulo">Proceso Fallido</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Error en el proceso de Eliminación.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_error_formulario.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+
+
+	<p:dialog id="popup_succ_montepio_id" widgetVar="popup_succ_montepio"
+		modal="true" showHeader="false" closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Informativo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								El beneficiario pertenece a montepio.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_succ_montepio.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog id="popup_succ_axu_funeral_id"
+		widgetVar="popup_succ_axu_funeral" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Informativo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								El beneficiario pertenece Auxilios Funerales.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="popup_succ_axu_funeral.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+	
+	
+	<p:dialog id="sin_campos_id"
+		widgetVar="sin_campos" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Informativo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Todos los campos son requeridos.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="sin_campos.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog id="cedula_campo_obligatorio_id"
+		widgetVar="cedula_campo_obligatorio" modal="true" showHeader="false"
+		closable="false" resizable="false">
+		<h:form>
+			<tbody>
+				<tr>
+					<td>
+						<div class="pop-up_correcto">
+							<p class="pop-up_titulo">Validación de campo</p>
+						</div>
+						<div class="pop-up_centro">
+							<div class="pop-up_contenido">
+								Cédula campo obligatorio.<br /> <br />
+								<button type="button" class="button_boton_popup"
+									onclick="cedula_campo_obligatorio.hide();">Aceptar</button>
+							</div>
+						</div>
+						<div class="pop-up_inferior"></div>
+					</td>
+				</tr>
+			</tbody>
+		</h:form>
+	</p:dialog>
+	
+	
+
+</h:body>
+</html>
+

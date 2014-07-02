@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Contaminacion Ambiental</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Contaminacion Ambiental</f:facet>
+
+	<h:form id="contaminacionAmbForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="contaminacionAmbDT" var="c"
+			value="#{contaminacionAmbientalControl.rhMgaContaminacionLts}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+           Contaminación Ambiental:   
+           <p:commandButton value="Actualizar"
+					action="#{contaminacionAmbientalControl.actualizar}"
+					icon="ui-icon-arrowrefresh-1-w" update=":contaminacionAmbForm" />
+				<p:commandButton value="Guardar"
+					actionListener="#{contaminacionAmbientalControl.guardar}"
+					update=":contaminacionAmbForm,:contaminacionAmbForm:msgs,:dialogWait"
+					icon="ui-icon-disk" onclick="dlgWait.show()" />
+				<p:commandButton value="Cargar Archivo"
+					action="#{contaminacionAmbientalControl.activarCargarArchivos()}"
+					icon="ui-icon-home" update=":contaminacionAmbForm" />
+				<p:commandButton value="Subir Archivo"
+					actionListener="#{contaminacionAmbientalControl.guardarLista}"
+					update=":contaminacionAmbForm,:contaminacionAmbForm:msgs,:dialogWait"
+					icon="ui-icon-disk"
+					rendered="#{contaminacionAmbientalControl.flagCancelarUpload}"
+					onclick="dlgWait.show()">
+					<p:confirm header="Confirmación"
+						message="Desea sobrescribir la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<p:commandButton value="Cancelar Cargar Archivo"
+					action="#{contaminacionAmbientalControl.cancelarCargarArchivos()}"
+					icon="ui-icon-close" update=":contaminacionAmbForm"
+					rendered="#{contaminacionAmbientalControl.flagCancelarUpload}" />
+
+				<p:fileUpload
+					fileUploadListener="#{contaminacionAmbientalControl.handleFileUpload}"
+					mode="advanced" update=":contaminacionAmbForm"
+					sizeLimit="100000000" auto="true" allowTypes="/(\.|\/)(|xls)$/"
+					rendered="#{contaminacionAmbientalControl.flagUpload}" />
+
+			</f:facet>
+
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.demarcacionHidrografica}"
+				filterBy="#{c.conDemarcacionhidrografica}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conDemarcacionhidrografica}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conDemarcacionhidrografica}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.evento} ">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conEvento}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conEvento}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText=" #{contaminacionAmbientalControl.menuContaminacionAmbiental.fechadeInspeccion} ">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conFechainspeccion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conFechainspeccion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.codigodeFicha} ">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conCodigoficha}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conCodigoficha}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.codigodeInforme} ">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conCodigoinforme}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conCodigoinforme}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.fechadeInforme}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{c.conFechainforme}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{c.conFechainforme}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column
+				headerText="#{contaminacionAmbientalControl.menuContaminacionAmbiental.edicion} ">
+				<p:commandButton title="Eliminar" icon="ui-icon-close"
+					action="#{contaminacionAmbientalControl.eliminar}"
+					update=":contaminacionAmbForm,:contaminacionAmbForm:msgs">
+					<f:setPropertyActionListener
+						target="#{contaminacionAmbientalControl.rhMgaContaminacion}"
+						value="#{c}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+
+		<p:commandButton value="Exportar Informacion" icon="ui-icon-copy"
+			onclick="PF('exp').show();" update=":fichaMOvilForm"></p:commandButton>
+
+
+	</h:form>
+
+	<p:dialog id="modalDialogExp" header="Exportar Todos los Datos"
+		widgetVar="exp" modal="true" height="100">
+		<h:form id="fichaMOvilForm">
+			<h:panelGrid column="4">
+				<p:graphicImage value="/img/export/excel.png" />
+				<p:commandLink value="Excel" ajax="false">
+					<p:fileDownload
+						value="#{reportesControlador.selectedFileExcelMgaContaminacionAmbiental}" />
+				</p:commandLink>
+
+				<p:graphicImage value="/img/export/pdf.png" />
+				<p:commandLink value="PDF" ajax="false">
+					<p:fileDownload
+						value="#{reportesControlador.selectedFilePdfMgaContaminacionAmbiental}" />
+				</p:commandLink>
+
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{contaminacionAmbientalControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+
+</h:body>
+
+</html>

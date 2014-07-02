@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Parametros de Comparación</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Parametros de Comparación</f:facet>
+
+	<h:form id="parametroComForm">
+		<p:growl id="msgs" showDetail="true" />
+		<p:dataTable id="parametroComDT" var="p"
+			value="#{parametrosComparacionControl.rhMcaParametroscomparacionlst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="10" scrollable="true" scrollWidth="1700"
+			resizableColumns="true">
+			<f:facet name="header">  
+            Parametros de Comparación
+              <p:commandButton value="Actualizar"
+					action="#{parametrosComparacionControl.actualizar()}"
+					icon="ui-icon-arrowrefresh-1-w" update=":parametroComForm" />
+			</f:facet>
+			<p:column headerText="ID">
+				<p:outputLabel value="#{p.prmCodigo}" />
+			</p:column>
+			<p:column filterBy="#{p.prmTipo}" headerText="Tipo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmTipo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmTipo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column filterBy="#{p.prmTipoparametro}"
+				headerText="Tipo Parametro">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmTipoparametro}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmTipoparametro}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column filterBy="#{p.prmParametrodescripcion}"
+				headerText="Parametro Descripcion">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmParametrodescripcion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmParametrodescripcion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="LMP TULSMA AGRICULTURA">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmLmptulmaagricultura}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmLmptulmaagricultura}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Unidad">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmUnidad}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmUnidad}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Valor Maximo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmValoresmax}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmValoresmax}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Valor Minimno">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{p.prmValoresmino}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{p.prmValoresmino}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" type="text/css" href="../../css/base.css"
+              media="screen" />
+    </h:head>
+    <h:body>
+
+        <p:panel id="pnl_selectors" header="Selectors" toggleable="true" collapsed="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panelSelector">  
+
+            <h:outputText value=" muestra como se puede poner como se desee los formulario ----------- se muestra el atributo (cellpadding)"  />  
+
+            <p:menu>  
+                <p:submenu label="Settings">  
+                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="panelSelector.toggle()"/>  
+                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="panelSelector.close()"/>  
+                </p:submenu>  
+            </p:menu>  
+        </p:panel>
+
+
+        <h:form id="form">
+
+      
+        
+            
+            <h:panelGrid columns="5">
+                <p:commandButton update="@(form)" value="All Forms" />
+
+                <p:commandButton update="@(form:last)" value="Last Form" />
+
+                <p:commandButton update="@(.ui-panel)" value="All Panels" />
+
+                <p:commandButton process="@(.ui-panel :input)" update="@(.ui-panel)" value="Inputs of Panel" />
+
+                <p:commandButton process="@(.ui-panel :input:not(select))" update="@(.ui-panel)" value="Inputs Except Select" />
+            </h:panelGrid>
+
+        </h:form>
+
+
+    </h:body>
+</html>
+
+
+
+

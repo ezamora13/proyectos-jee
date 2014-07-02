@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cherry_Landscape_1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d3e9f36-13d3-4e8d-8568-2b9bb2aa37c4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Senagua-nube"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select * from modulos.rh_mga_matrizseguimientoplanesma   where pmz_id=$P{id}]]>
+	</queryString>
+	<field name="mtz_n" class="java.lang.String"/>
+	<field name="mtz_programas_subprogramapma" class="java.lang.String"/>
+	<field name="mtz_porcentajecumplimiento" class="java.lang.String"/>
+	<field name="mtz_responsablesenagua" class="java.lang.String"/>
+	<field name="mtz_responsablecontratista" class="java.lang.String"/>
+	<field name="mtz_mediosverificacion" class="java.lang.String"/>
+	<field name="mtz_anualcumplimiento2012" class="java.lang.String"/>
+	<field name="mtz_anualcumplimiento2013" class="java.lang.String"/>
+	<field name="mtz_observacion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="142" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" forecolor="#000000" backcolor="#3600CC" uuid="4133ce03-067e-4c1f-83f0-1a48d765d8f2"/>
+				<staticText>
+					<reportElement x="390" y="36" width="410" height="30" forecolor="#C0C0C0" uuid="cf7b3824-b6a2-40fd-8220-dbcb99e5a000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="22"/>
+					</textElement>
+					<text><![CDATA[Seguimiento del Plan de Manejo Ambiental]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="390" height="66" forecolor="#FFFFFF" uuid="c8d5e1a0-d288-4d6b-a2bc-78f34a2d0619"/>
+					<textElement>
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<text><![CDATA[Sistema Nacional de Información de los Recursos Hídricos]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#3600CC" uuid="5a94e37e-dcd3-4594-8186-4c1f3a9128c2"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="652" y="10" width="144" height="20" forecolor="#FFFFFF" uuid="034f359b-77ec-4f01-a1ff-bc2345467ac7"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="0" y="102" width="30" height="38" forecolor="#000000" uuid="c9960172-f62a-47a6-83a4-23ed2f2f5661"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="30" y="102" width="110" height="38" forecolor="#000000" uuid="518f094e-d4f3-45b5-a2ea-dc8cc85e03f9"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMAS-SUBPROGRAMAS DEL PMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="140" y="102" width="80" height="38" forecolor="#000000" uuid="9a47529c-45fa-4f88-8a3f-be19dcaa97ed"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje de Cumplimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="220" y="125" width="60" height="15" forecolor="#000000" uuid="2a0c19d5-a903-403b-b0aa-b516d5ab22f0"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SENAGUA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="125" width="70" height="15" forecolor="#000000" uuid="71269503-4667-4b44-a4ee-0adc74694544"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="350" y="102" width="130" height="38" forecolor="#000000" uuid="6d4b02ba-9c4f-4348-9d6d-9fe8e1be4c18"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDIOS DE VERIFICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="125" width="70" height="15" forecolor="#000000" uuid="982377d0-992e-4a13-87da-0e27e44b3523"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2012]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="550" y="125" width="70" height="15" forecolor="#000000" uuid="7ef3f651-67df-4dd2-b91e-e3ae84f9aed3"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2013]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="620" y="102" width="180" height="38" forecolor="#000000" uuid="fb99e5be-fe92-4758-98a2-26ee4f59c4a1"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="102" width="130" height="23" uuid="5c96ba9b-ca3f-4647-8db8-d102ace76829"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="102" width="140" height="23" uuid="47cdfbf2-5abd-45ce-8a00-b785cce676d6"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE CUMPLIMIENTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="18" uuid="52350028-5e2f-4658-a2bc-809285bce89f"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="30" height="18" uuid="f403de45-7d68-40a6-af53-32518d5cb741"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_n}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="30" y="0" width="110" height="18" uuid="d6412517-81d7-4819-acc3-ca4208e4bea6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_programas_subprogramapma}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="140" y="0" width="80" height="18" uuid="26d12bf2-248d-4a5f-b135-d9601e0245ab"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_porcentajecumplimiento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="220" y="0" width="60" height="18" uuid="e4dd70e6-9cad-4c92-905f-34e6e5f27aef"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_responsablesenagua}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="280" y="0" width="70" height="18" uuid="26d15eed-1b60-4505-8567-e305f6214a19"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_responsablecontratista}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="350" y="0" width="130" height="18" uuid="671bd504-0e80-42e8-b4e3-8235403554be"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_mediosverificacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="480" y="0" width="70" height="18" uuid="4976586d-3e0a-4492-9b96-282dc50567d6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_anualcumplimiento2012}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="550" y="0" width="70" height="18" uuid="2f549dc7-d84b-4690-a7d5-8cc212ed9a22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_anualcumplimiento2013}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="620" y="0" width="180" height="18" uuid="328534c6-4fb8-455a-83eb-c26cd826c9db"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mtz_observacion}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bc3c94c2-d3b2-42b0-9506-315ee1023a54"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="7714c511-f0db-42f6-bdb2-a32e8b4c9b18"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="e4f8065f-2c23-4d24-95ee-29669d9a5f63"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="15280d01-001c-4c6c-bcf0-5ce587e11ba4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="bc24027c-3664-4393-98a2-e803f13a017b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
