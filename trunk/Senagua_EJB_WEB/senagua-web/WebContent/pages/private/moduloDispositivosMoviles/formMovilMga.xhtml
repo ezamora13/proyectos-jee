@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Formulario Dispositivos Móviles Calidad del Agua</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Formulario Dispositivos Móviles</f:facet>
+
+	<h:form id="formularioDMovil">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="tablesDT" var="t"
+			value="#{formularioMovilControl.rhTabletRegistroMGALst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="10">
+			<f:facet name="header">  
+            Registro Tablet Calidad del Agua     
+            <p:commandButton value="Anadir"
+					action="#{formularioMovilControl.anadirCalidadAgua}"
+					onclick="PF('dlg').show();" icon="ui-icon-star"
+					update=":fichaMOvilForm,:fichaMOvilForm:tabView" />
+				<p:commandButton value="Actualizar"
+					action="#{formularioMovilControl.actualizarMca}"
+					update=":formularioDMovil" icon="ui-icon-refresh" />
+
+			</f:facet>
+
+			<p:column headerText="Código de Inspección">
+				<h:outputText value="#{t.rgNumeroficha}" />
+			</p:column>
+			<p:column headerText="Coordenadas X">
+				<h:outputText value="#{t.rgCoordenadax}" />
+			</p:column>
+			<p:column headerText="Coordenada Y">
+				<h:outputText value="#{t.rgCoordenaday}" />
+			</p:column>
+			<p:column headerText="Altura">
+				<h:outputText value="#{t.rgAltura}" />
+			</p:column>
+			<p:column headerText="Provincia">
+				<h:outputText value="#{t.rg_provincia}" />
+			</p:column>
+			<p:column headerText="Cantón">
+				<h:outputText value="#{t.rg_canton}" />
+			</p:column>
+			<p:column headerText="Parroquia">
+				<h:outputText value="#{t.rg_parroquia}" />
+			</p:column>
+			<p:column headerText="Sitio Sector">
+				<h:outputText value="#{t.rgSitiosector}" />
+			</p:column>
+			<p:column headerText="Ruta">
+				<h:outputText value="#{t.rgRutaacceso}" />
+			</p:column>
+			<p:column headerText="Demarcación Hidrografía">
+				<h:outputText value="#{t.rg_demarcacion}" />
+			</p:column>
+			<p:column headerText="Código PFafstetter">
+				<h:outputText value="#{t.rg_codpfafsteter}" />
+			</p:column>
+			<p:column headerText="Unidad Hidrográfica PFafstetter">
+				<h:outputText value="#{t.rg_pfafsteter}" />
+			</p:column>
+			<p:column headerText="Cuenca">
+				<h:outputText value="#{t.rg_cuenca}" />
+			</p:column>
+			<p:column headerText="Sub Cuenca">
+				<h:outputText value="#{t.rg_subcuenca}" />
+			</p:column>
+			<p:column headerText="Micro Cuenca">
+				<h:outputText value="#{t.rg_microcuenca}" />
+			</p:column>
+			<p:column headerText="Nombre de la Fuente">
+				<h:outputText value="#{t.rgNombrefuente}" />
+			</p:column>
+			<p:column headerText="Fecha">
+				<h:outputText value="#{t.rgFecha}" />
+			</p:column>
+
+			<p:column headerText="Factor Agrícola">
+				<p:selectBooleanCheckbox value="#{t.rgFacAgricola}" />
+			</p:column>
+			<p:column headerText="Factor Minera">
+				<p:selectBooleanCheckbox value="#{t.rgFacMineria}" />
+			</p:column>
+			<p:column headerText="Factor Industrial">
+				<p:selectBooleanCheckbox value="#{t.rgFacIndustrial}" />
+			</p:column>
+			<p:column headerText="Factor Ganadera">
+				<p:selectBooleanCheckbox value="#{t.rgFacGanadera}" />
+			</p:column>
+			<p:column headerText="Factor Población">
+				<p:selectBooleanCheckbox value="#{t.rgFacPoblacional}" />
+			</p:column>
+			<p:column headerText="Factor Hidrocarburifica">
+				<p:selectBooleanCheckbox value="#{t.rgFacHidrocarburifera}" />
+			</p:column>
+			<p:column headerText="Factor Ninguno">
+				<p:selectBooleanCheckbox value="#{t.rgFacNinguna}" />
+			</p:column>
+			<p:column headerText="Factor Otro">
+				<p:selectBooleanCheckbox value="#{t.rgFacOtro}" />
+			</p:column>
+			<p:column headerText="Factor Descripcion">
+				<h:outputText value="#{t.rgDescripcionfactores}" />
+			</p:column>
+			<p:column headerText="Observaciones Accesibilidad">
+				<p:selectBooleanCheckbox value="#{t.rgObservacionesaccesibilidad}" />
+			</p:column>
+			<p:column headerText="Observaciones Muestra">
+				<p:selectBooleanCheckbox value="#{t.rgObservacionestomamuestra}" />
+			</p:column>
+			<p:column headerText="Observaciones Margen Acceso">
+				<p:selectBooleanCheckbox value="#{t.rgObservacionesmargen}" />
+			</p:column>
+			<p:column headerText="Observaciones Vertiente">
+				<p:selectBooleanCheckbox value="#{t.rhVertienteamazonas}" />
+			</p:column>
+
+			<p:column headerText="Consideraciones Generales ">
+				<h:outputText value="#{t.rgObservacionesotras}" />
+			</p:column>
+			<p:column headerText="Edición " exportable="false">
+				<p:commandButton title="Editar"
+					action="#{formularioMovilControl.editarFicha}"
+					update=":fichaMOvilForm" icon="ui-icon-pencil"
+					onclick="PF('dlg').show();">
+					<f:setPropertyActionListener
+						target="#{formularioMovilControl.rhTabletRegistro}" value="#{t}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+		<p:commandButton value="Exportar Informacion" icon="ui-icon-copy"
+			onclick="PF('exp').show();" update=":fichaMOvilForm"></p:commandButton>
+
+		<p:dialog id="modalDialogExp" header="Exportar Todos los Datos"
+			widgetVar="exp" modal="true" height="100">
+			<h:panelGrid column="4">
+				<p:graphicImage value="/img/export/excel.png" />
+				<p:commandLink value="Excel" ajax="false">
+					<p:dataExporter type="xls" target="tablesDT"
+						fileName="DispositivoMovil" />
+				</p:commandLink>
+				<p:graphicImage value="/img/export/pdf.png" />
+				<p:commandLink value="Pdf" ajax="false">
+					<p:dataExporter type="pdf" target="tablesDT"
+						fileName="DispositivoMovil" />
+				</p:commandLink>
+
+
+			</h:panelGrid>
+
+
+		</p:dialog>
+
+	</h:form>
+
+
+
+	<p:dialog id="modalDialog" header="Dispositivo Móvil: Ficha "
+		widgetVar="dlg" modal="true" height="500">
+		<h:form id="fichaMOvilForm">
+			<p:growl id="msgs2" showDetail="true" />
+			<p:tabView id="tabView">
+				<p:tab id="tab1" title="Coordenadas del Levantamiento">
+					<p:panelGrid columns="6">
+						<p:outputLabel value="Coordenada Este:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgCoordenadax}" />
+						<p:outputLabel value="Coordenada Norte:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgCoordenaday}" />
+						<p:outputLabel value="Altura:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgAltura}" />
+						<p:outputLabel value="Sitio Sector:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgSitiosector}" />
+						<p:outputLabel value="Ruta:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgRutaacceso}" />
+						<p:outputLabel value="Nombre de la Fuente:" />
+						<p:inputText
+							value="#{formularioMovilControl.rhTabletRegistro.rgNombrefuente}" />
+					</p:panelGrid>
+					<p:commandButton value="Validar"
+						action="#{formularioMovilControl.validarCoordenadas()}"
+						icon=" ui-icon-search"
+						update=":fichaMOvilForm,:fichaMOvilForm:msgs2" />
+
+					<p:panelGrid columns="4">
+						<f:facet name="header">  
+  Ubicación e Información de la fuente    
+						</f:facet>
+						<h:outputLabel value="Provincia:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_provincia}" />
+						<h:outputLabel value="Cantón:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_canton}" />
+						<h:outputLabel value="Parroquia:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_parroquia}" />
+						<p:outputLabel value="Demarcación Hidrográfica:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_demarcacion}" />
+						<p:outputLabel value="Código:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_codpfafsteter}" />
+						<p:outputLabel value="Unidad Hidrográfica Pfafstetter:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_pfafsteter}" />
+						<p:outputLabel value="Cuenca:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_cuenca}" />
+						<p:outputLabel value="Sub Cuenca:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_subcuenca}" />
+						<p:outputLabel value="Micro Cuenca:" />
+						<p:outputLabel
+							value="#{formularioMovilControl.rhTabletRegistro.rg_microcuenca}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab id="tab2" title="Factores Antropogénicos y Observaciones">
+					<h:panelGrid>
+						<p:panelGrid columns="6">
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacAgricola}" />
+							<p:outputLabel value="Agrícola" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacMineria}" />
+							<p:outputLabel value="Minera" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacIndustrial}" />
+							<p:outputLabel value="Industrial" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacGanadera}" />
+							<p:outputLabel value="Ganadería" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacPoblacional}" />
+							<p:outputLabel value="Población" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacHidrocarburifera}" />
+							<p:outputLabel value="Hidrocarburífera" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacNinguna}" />
+							<p:outputLabel value="Ninguna" />
+							<p:selectBooleanCheckbox
+								value="#{formularioMovilControl.rhTabletRegistro.rgFacOtro}" />
+							<p:outputLabel value="Otro" />
+
+						</p:panelGrid>
+						<p:outputLabel value="Descripción:" />
+						<p:inputTextarea
+							value="#{formularioMovilControl.rhTabletRegistro.rgDescripcionfactores}" />
+					</h:panelGrid>
+
+					<h:panelGrid>
+						<p:panelGrid columns="4">
+							<f:facet name="header">  
+  Observaciones   
+				</f:facet>
+							<p:outputLabel value="Accesibilidad:" />
+							<p:selectOneRadio
+								value="#{formularioMovilControl.rhTabletRegistro.rgObservacionesaccesibilidad}">
+								<f:selectItem itemLabel="Fácil" itemValue="true" />
+								<f:selectItem itemLabel="Difícil" itemValue="false" />
+							</p:selectOneRadio>
+							<p:outputLabel value="Toma de Muestra:" />
+							<p:selectOneRadio
+								value="#{formularioMovilControl.rhTabletRegistro.rgObservacionestomamuestra}">
+								<f:selectItem itemLabel="Directa" itemValue="true" />
+								<f:selectItem itemLabel="Indirecta" itemValue="false" />
+							</p:selectOneRadio>
+							<p:outputLabel value="Margen Acceso hacia el Rio:" />
+							<p:selectOneRadio
+								value="#{formularioMovilControl.rhTabletRegistro.rgObservacionesmargen}">
+								<f:selectItem itemLabel="Derecho" itemValue="true" />
+								<f:selectItem itemLabel="Izquierdo" itemValue="false" />
+							</p:selectOneRadio>
+							<p:outputLabel value="Vertiente:" />
+							<p:selectOneRadio
+								value="#{formularioMovilControl.rhTabletRegistro.rhVertienteamazonas}">
+								<f:selectItem itemLabel="Pacifico" itemValue="true" />
+								<f:selectItem itemLabel="Amazonas" itemValue="false" />
+							</p:selectOneRadio>
+						</p:panelGrid>
+						<p:outputLabel value="Consideraciones Generales" />
+						<p:inputTextarea
+							value="#{formularioMovilControl.rhTabletRegistro.rgObservacionesotras}" />
+						<p:panelGrid columns="6">
+							<p:outputLabel value="Ubicacion del Punto" />
+							<p:selectOneMenu
+								value="#{formularioMovilControl.rhTabletRegistro.rgIdpuntocuenca}"
+								style="width:70%">
+								<f:selectItem itemLabel="Escoja una Opción" itemValue="" />
+								<f:selectItems
+									value="#{formularioMovilControl.rhParametroSistemaLstUbicacion}"
+									var="p" itemValue="#{p.prId}" itemLabel="#{p.prDescripcion}" />
+							</p:selectOneMenu>
+							<p:outputLabel value="Representabilidad" />
+							<p:selectOneMenu
+								value="#{formularioMovilControl.rhTabletRegistro.rgIdrepresentabilidad}"
+								style="width:70%">
+								<f:selectItem itemLabel="Escoja una Opción" itemValue="" />
+								<f:selectItems
+									value="#{formularioMovilControl.rhParametroSistemaLstRepresentabilidad}"
+									var="p" itemValue="#{p.prId}" itemLabel="#{p.prDescripcion}" />
+							</p:selectOneMenu>
+							<p:outputLabel value="Condiciones Climáticas" />
+							<p:selectOneMenu
+								value="#{formularioMovilControl.rhTabletRegistro.rgIdcondiciionclimatica}"
+								style="width:70%">
+								<f:selectItem itemLabel="Escoja una Opción" itemValue="" />
+								<f:selectItems
+									value="#{formularioMovilControl.rhParametroSistemaLstCondicionesClimaticas}"
+									var="p" itemValue="#{p.prId}" itemLabel="#{p.prDescripcion}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+						<p:outputLabel value="Responsables" />
+						<p:inputTextarea
+							value="#{formularioMovilControl.rhTabletRegistro.rgObservacionesrepresentabilidad}" />
+					</h:panelGrid>
+				</p:tab>
+
+				<p:tab id="tab3" title="Fotografías">
+					<p:dataTable id="fotografiasDT" var="f"
+						value="#{formularioMovilControl.rhTabletFotoLst}" editable="true"
+						editMode="cell" widgetVar="zTable" paginator="true" rows="10">
+						<f:facet name="header">             Fotografías   
+						<p:commandButton value="Agregar"
+								actionListener="#{formularioMovilControl.anadirRegistroFoto}"
+								update=":fichaMOvilForm" icon="ui-icon-star" />
+
+						</f:facet>
+						<p:column headerText="Nombre">
+							<p:inputText value="#{f.ftNombre}" />
+						</p:column>
+						<p:column headerText="Descripción">
+							<p:inputText value="#{f.ftDescripcion}" />
+						</p:column>
+						<p:column headerText="Descargar">
+							<p:commandLink value="#{(f.ftArchivo == null)?'':'Download' }"
+								ajax="false">
+								<f:setPropertyActionListener
+									target="#{formularioMovilControl.rhTabletFoto}" value="#{f}" />
+								<p:fileDownload
+									value="#{formularioMovilControl.selectedFileToDownload}" />
+							</p:commandLink>
+							<p:commandLink value="#{(f.ftArchivo == null)?'Upload':'' }"
+								onclick="PF('dlg2').show();">
+								<f:setPropertyActionListener
+									target="#{formularioMovilControl.rhTabletFoto}" value="#{f}" />
+							</p:commandLink>
+						</p:column>
+						<p:column headerText="Edición">
+							<p:commandButton title="Guardar"
+								action="#{formularioMovilControl.guardarRegistroFoto}"
+								update=":fichaMOvilForm,:fichaMOvilForm:msgs2,:dialogWait"
+								icon="ui-icon-disk">
+								<f:setPropertyActionListener
+									target="#{formularioMovilControl.rhTabletFoto}" value="#{f}" />
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+				</p:tab>
+
+			</p:tabView>
+
+			<p:panel>
+				<f:facet name="header">  
+  Ficha Proceso   
+				</f:facet>
+				<p:commandButton value="Guardar"
+					action="#{formularioMovilControl.guardarFichaMCA}"
+					update=":formularioDMovil,:fichaMOvilForm:msgs2," />
+			</p:panel>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog id="modalDialogUpload" header="Carga de Archivos"
+		widgetVar="dlg2" modal="true" height="100">
+		<h:form>
+			<p:fileUpload
+				fileUploadListener="#{formularioMovilControl.handleFileUpload}"
+				mode="advanced" update=":fichaMOvilForm:msgs2" auto="true"
+				sizeLimit="1000000" allowTypes="/(\.|\/)(jpg)$/" />
+			<p:growl id="messages" showDetail="true" />
+
+		</h:form>
+
+	</p:dialog>
+
+
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{registroInformacionControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+
+</html>

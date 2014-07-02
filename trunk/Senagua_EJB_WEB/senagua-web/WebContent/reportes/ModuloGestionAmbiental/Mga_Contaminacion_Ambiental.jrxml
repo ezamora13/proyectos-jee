@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mga_Contaminacion_Ambiental" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38c6b210-5121-45e4-a84a-f8f671bb1d06">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Senagua-nube"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select * from modulos.rh_mga_contaminacion]]>
+	</queryString>
+	<field name="con_demarcacionhidrografica" class="java.lang.String"/>
+	<field name="con_evento" class="java.lang.String"/>
+	<field name="con_fechainspeccion" class="java.lang.String"/>
+	<field name="con_codigoficha" class="java.lang.String"/>
+	<field name="con_codigoinforme" class="java.lang.String"/>
+	<field name="con_fechainforme" class="java.lang.String"/>
+	<field name="con_id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="139" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#3333CC" uuid="12cdda67-49c6-412a-87c7-02e0855f533e"/>
+				<staticText>
+					<reportElement x="0" y="0" width="500" height="66" forecolor="#FFFFFF" uuid="a8cae311-58aa-4c0f-9aa0-795f64f6c663"/>
+					<textElement>
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<text><![CDATA[Sistema Nacional de Información de los Recursos Hídricos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="500" y="30" width="297" height="34" forecolor="#C0C0C0" uuid="3bf04873-0558-4ecc-8095-2a8f6ec06b00"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<text><![CDATA[Contaminación Ambiental]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#3333CC" uuid="82080932-74cf-4620-8841-46fff98f8011"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="653" y="6" width="144" height="20" forecolor="#FFFFFF" uuid="4174e842-f22a-4540-aba8-8155b86f2eab"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="0" y="102" width="110" height="35" forecolor="#000000" uuid="c614845a-43fc-4e62-a91e-eaef9775eccb"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Demarcación Hidrográfica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="110" y="102" width="150" height="35" forecolor="#000000" uuid="c4e9fd39-dce6-496e-a316-6966356a3bc4"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="260" y="102" width="90" height="35" forecolor="#000000" uuid="1cba9027-3d2c-49ae-83b2-4a454d00cdf2"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Inspección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="350" y="102" width="90" height="35" forecolor="#000000" uuid="163b3374-382d-457a-8872-936d0aabeeed"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código de Ficha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="440" y="102" width="220" height="35" forecolor="#000000" uuid="4664f808-592d-49e8-b69d-8b5ce3c9c463"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código de Informe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="660" y="102" width="120" height="35" forecolor="#000000" uuid="f98af633-fae5-40f5-8a93-d92bb7d039dc"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Informe]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="780" height="18" uuid="2fd443ae-adc0-45f0-9a65-e8c909461c2a"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="110" height="18" uuid="261489e2-177e-498a-ac80-71a0be14768a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_demarcacionhidrografica}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="110" y="0" width="150" height="18" uuid="74c6f204-bd33-4788-96ff-6d0140a99762"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_evento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="260" y="0" width="90" height="18" uuid="4a52cbe9-ddf5-4f1c-9e94-e7fddca1d824"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_fechainspeccion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="350" y="0" width="90" height="18" uuid="d9c021f6-970c-4a55-a85f-d1a930e42d19"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_codigoficha}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="440" y="0" width="220" height="18" uuid="b560cf36-1da4-4667-aa43-8dcd565c6a5b"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_codigoinforme}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="660" y="0" width="120" height="18" uuid="b3e6714f-e3dd-4ffd-942c-a6c5a917aef3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{con_fechainforme}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="002170af-435d-4ab6-aa92-ca29accec3db"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="5a881d6c-01ae-4fbd-b662-928ac9e8ba3b"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="5cdd1be4-edea-4706-8982-00cfecd2ea44"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="953a2e88-5eac-4ff3-a4a4-ad1d8bd0cebc"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="d106d171-4770-492f-a4a7-391647bec71b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

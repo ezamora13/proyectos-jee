@@ -1,0 +1,709 @@
+/***********
+ESTILOS 
+************/
+html {
+	color: #000;
+	/*background:#FFF;*/
+}
+
+body,div,dl,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th
+	{
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset,img {
+	border: 0;
+}
+
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+li {
+	list-style: none;
+}
+
+caption,th {
+	text-align: left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 18px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #0065A3;
+}
+
+q:before,q:after {
+	content: '';
+}
+
+abbr,acronym {
+	border: 0;
+	font-variant: normal;
+}
+/* to preserve line-height and selector appearance */
+sup {
+	vertical-align: text-top;
+}
+
+sub {
+	vertical-align: text-bottom;
+}
+
+input,textarea,select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+/*to enable resizing for IE*/
+input,textarea,select {
+	font-size: 100%;
+}
+/*because legend doesn't inherit in IE */
+legend {
+	color: #000;
+}
+
+label,th {
+	color: #0065A3;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/**************
+FIN RESETEO
+***************/
+* {
+	font-family: Helvetica, Arial, Verdana;
+	font-size: 12px;
+	color: #4C4D50;
+}
+
+body {
+	font: 11px "HelveticaNeue-Light", "Helvetica Neue Light",
+		"Helvetica Neue", Helvetica;
+	background: #ecf2f8; /*#ecf2f8*/
+	color: #282828;
+	text-align: left;
+	margin: 0 auto;
+	top: 0px;
+	padding: 0px;
+}
+
+.tit_sistema {
+	font-size: 32px;
+}
+
+#cabecera {
+	height: 100px;
+	background: url(../img/plantilla/fon_nubes_cabecera.jpg);
+	background-repeat: no-repeat;
+}
+
+#contenedor {
+	margin: 0px 0px 0px 10px;
+	width: 92%;
+	height: auto;
+	border: 0px solid #000;
+	/*background:url(../img/plantilla/fon_contenedor.jpg) no-repeat;*/
+	padding: 10px 20px 0px 5px;
+}
+
+#contenedor_pag {
+	margin: 0px 0px 0px 10px;
+	width: 92%;
+	height: auto;
+	border: 0px solid #000;
+	padding: 30px 20px 0px 5px;
+}
+
+.logo {
+	position: absolute;
+	top: 10px;
+	width: 51px;
+	height: 86px;
+	background: url(../img/plantilla/logoSNIRH.png) no-repeat;
+	margin: 20px 0px 0px 30px;
+}
+
+.rosa {
+	position: absolute;
+	top: 30px;
+	width: 171px;
+	height: 61px;
+	background: url(../img/plantilla/fon_rosa.gif);
+	margin: 0px 0px 0px 190px;
+}
+
+.banner {
+	position: absolute;
+	top: 43px;
+	right: 60px;
+	width: 324px;
+	height: 24px; //
+	background: url(../img/plantilla/fon_eslogan.gif) no-repeat;
+	margin: 0px 0px 0px 208px;
+}
+
+#mensaje_clave {
+	/*background-image: url(../img/plantilla/ico_men_clave.png);*/
+	background-repeat: no-repeat;
+	/*padding: 55px 0px 0px 2px;*/
+	margin: 100px 0px 0px 0px;
+	font-size: 12px;
+}
+
+#pie {
+	font-size: 10px;
+	color: #999;
+	height: 88px; //
+	/*background: url(../img/plantilla/fon_pie_pagina.jpg) repeat-x;
+	border: 0px solid #000;
+	background-position: bottom;
+	border-bottom: 1px solid #a1a4a6;*/
+	margin: 50px 0px 0px 55px;
+	width: 99%;
+}
+
+/***************
+ENLACES EN GENERAL a
+*************/
+a {
+	color: #0065a3;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ff8c00;
+	text-decoration: underline;
+}
+
+/***************
+ESPACIOS PREDEFINIDOS
+**************/
+.espacio {
+	width: auto;
+	height: 2px;
+	clear: both;
+	padding-bottom: 2px;
+}
+
+.espacio_grande {
+	width: auto;
+	height: 5px;
+	clear: both;
+	padding-bottom: 2px;
+}
+
+/***************
+MENU SUPERIOR   ( AYUDA | SALIR )
+****************/
+#menu_linea {
+	background: url(../img/menu/vin_menu.gif);
+	width: 950px;
+	height: 10px;
+	float: left;
+}
+
+.menu_superior {
+	position: absolute;
+	top: 60px;
+	right: 440px;
+	textcolor: #294a71;
+	width: 260px;
+	height: 34px;
+	font-size: 60px;
+	font-weight: bold;
+	float: right;
+	width: 260px;
+}
+
+.menu_supe {
+	position: absolute;
+	top: 140px;
+	color: #294a71;
+	right: 720px;
+	width: 260px;
+	height: 54px;
+	font-size: 12px;
+	float: right;
+	right: 720px;
+}
+
+#principal {
+	background: #ffffff;
+	width: 850px;
+	border: 1px solid #6482b2;
+	border-radius: 15px;
+	margin: 0 auto;
+	height: 450px;
+	text-align: center;
+}
+
+.panel_logout {
+	padding-bottom: 5px;
+}
+
+.menu_superior a {
+	text-decoration: none;
+}
+
+.menu_superior a:hover {
+	color: #294a71;
+	padding: 13px 13px 0px 0px;
+}
+
+/*************
+PLANTILLA INTERNA
+*/
+#contenido {
+	float: left;
+	height: auto;
+	padding: 20px 0px 0px 12px;
+	width: 72%;
+	border: 0px solid #000;
+	background: url(../img/menu/fon_contenedor.jpg);
+	background-position: 0 0;
+	margin: 0 0 0 5px;
+	background-repeat: no-repeat;
+}
+
+#area {
+	margin-top: 0px;
+	padding: 0px 10px 0px 10px;
+	width: 98%;
+	height: 22px;
+	background: url(../img/menu/vin_menu.gif);
+	color: #6a6a6a;
+	float: left;
+}
+
+.usuario {
+	float: left;
+	background: url(../img/plantilla/ico_usuario.png) no-repeat;
+	height: 25px;
+	width: 500px;
+	color: #999;
+	background-position: 0 0;
+	padding: 2px 0px 0px 30px;
+}
+
+.fecha {
+	float: right;
+	height: 25px;
+	width: 120px;
+	color: #999;
+	padding: 3px 0px 0px 20px;
+	margin-top: 3px;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+/*******************************/
+/*       MENU VERTICAL PLANTILLA INTERNA                    */
+/*********************************/
+#menu {
+	float: left;
+	height: auto;
+	width: 190px;
+	border: 0px solid #000;
+	background: url(../img/menu/fon_menu.png);
+	background-repeat: no-repeat;
+	margin: 0px 0px 0px 5px;
+}
+
+#cuadro_menu {
+	background: url(../img/menu/fon_contenido.png);
+	background-repeat: no-repeat;
+	width: 190px;
+	height: auto;
+	margin: 40px 0px 0px 2px;
+	padding: 21px 10px 0px 15px;
+}
+
+#cuadro_menu li {
+	list-style-type: none;
+	float: left;
+	margin: 0px 10px;
+	height: 21px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#cuadro_menu li a {
+	padding: 0 0 7px 0;
+	color: #6B6B6B;
+	text-decoration: none;
+	font-size: 11px;
+	text-align: left;
+}
+
+#cuadro_menu li a:hover {
+	background: #F3F3F3 url(../img/arrow-on.gif) no-repeat scroll right
+		center !important;
+	color: #6B6B6B;
+	padding-right: 20px;
+	padding-top: 5px;
+	text-decoration: none;
+}
+
+/*--------------------*/ /************
+CONTENEDOR IZQUIERDO LOGO, REQUISITOS,ETC.
+*************/
+.cont_izquierda {
+	float: left;
+	width: 370px;
+	margin-top: 20px;
+}
+
+.requisitos_fondo {
+	background: url(../img/plantilla/fon_requisitos.jpg);
+	height: auto;
+	width: 326px;
+	margin-top: 0px;
+	background-repeat: no-repeat;
+	padding: 30px 10px 0px 27px;
+}
+
+.logo_aplicativo {
+	text-align: left;
+	z-index: 1;
+	margin-top: 0px;
+}
+
+/************
+CONTENEDOR DERECHA LOGIN, TECLADO,ETC.
+*************/
+.cont_derecha {
+	float: left;
+	width: 560px;
+	height: auto;
+	margin: 10px 0px 0px 0px;
+}
+
+.ingreso_sistema {
+	height: 100px;
+	width: 421px;
+	padding: 80px 20px 20px 260px;
+}
+
+.teclado_fondo {
+	background-image: url(../img/teclado/fon_marco.gif);
+	background-repeat: no-repeat;
+	width: 380px;
+	height: 182px;
+}
+
+.teclado {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 20px 30px 30px;
+}
+
+/*******
+CAMBIO O EFECTO DE UNDIDO EN EL BOTON DEL TECLADO
+
+*******/
+#tecla_cambio img {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	width: 26px;
+	height: 26px;
+}
+
+#tecla_cambio img:hover {
+	border: 1px solid #77a7bd;
+	width: 24px;
+	height: 24px;
+	margin: 0px 0 0 0px;
+	cursor: pointer;
+}
+
+#tecla_cambio a:hover {
+	border: 2px solid #77a7bd;
+	width: 20px;
+	height: 20px;
+	margin: 1px 1px 10px 1px;
+	cursor: pointer;
+}
+
+#tecla_cambio2 img {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	width: 55px;
+	height: 26px;
+}
+
+#tecla_cambio2 img:hover {
+	border: 1px solid #77a7bd;
+	width: 53px;
+	height: 24px;
+	margin: 0px 0 0 0px;
+	cursor: pointer;
+}
+
+#tecla_cambio3 img {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	width: 57px;
+	height: 26px;
+}
+
+#tecla_cambio3 img:hover {
+	border: 1px solid #77a7bd;
+	width: 55px;
+	height: 24px;
+	margin: 0px 0 0 0px;
+	cursor: pointer;
+}
+/***************
+CAJA DE TEXTO - INGRESO
+*************/
+.ingreso_sistema form table tr td input {
+	height: 16px;
+	width: 110px;
+	margin-top: 5px;
+	background-image: url(../img/acceso/fon_caj_texto.png);
+	border: 1px solid #c9cbc9;
+	border-radius: 3px;
+}
+/***************
+BOTONES - INGRESO
+****************/
+.button_0 {
+	height: 30px;
+	width: 119px;
+	margin-top: 4px;
+	margin-bottom: 10px;
+	color: #000;
+	font-size: 12px;
+	background-image: url(../img/botones/boton_gris.png);
+	border-color: #d9d9d9 #777171 #777171 #d9d9d9;
+	border-image: none;
+	border-style: solid;
+	border-width: 1px;
+	color: #2d2b2b;
+	cursor: pointer;
+}
+
+.button_1 {
+	height: 22px;
+	width: 84px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #ffffff;
+	font-size: 12px;
+	background-image: url(../img/botones/fon_boton2.png);
+	border-radius: 5px;
+	border-color: #84b2ca;
+}
+
+.button_2 {
+	height: 20px;
+	width: 108px;
+	margin-left: 3px;
+	color: #ffffff;
+	font-size: 12px;
+	background-image: url(../img/botones/fon-boton.png);
+	background-color: #0065a3;
+	border-radius: 5px;
+	border-color: #90c8d7;
+}
+
+/************************************
+AUMENTADOS PARA MENU LATERAL Y CONTENT
+*************************************/
+.ubicacionMenu {
+	text-decoration: none;
+	font-size: 12px;
+	cursor: pointer;
+	color: #0065A3;
+	font-weight: bold;
+}
+
+table {
+	width: 100%;
+}
+
+a {
+	cursor: pointer;
+}
+
+iframe {
+	max-width: 100%;
+	/*min-height: 629px;*/
+	border: none;
+}
+
+/*Content area*/
+#content {
+	min-height: 400px;
+}
+/*fin Content area*/
+
+/*leftMenu*/
+#leftMenu {
+	height: 100%;
+	width: 160px;
+	height: auto;
+	border-right: 2px solid #E8F3F5;
+	float: left;
+	overflow: auto;
+	padding-left: 10px;
+	overflow: auto;
+}
+/*fin leftMenu*/
+
+/*Panel Principal*/
+.panel_principal {
+	text-align: center;
+}
+
+/*Deploy Area*/
+#deploy {
+	min-height: 470px;
+	margin-top: 1px;
+	display: block;
+	max-width: 1150px;
+	min-width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*fin deploy area*/
+
+/* Para darle estylos de datatable a un par tablas normales*/
+.make-data-table {
+	padding: 4px 10px;
+	text-align: center;
+}
+
+/*Para los mensajes del login*/
+.ui-growl {
+	right: 20px;
+	top: 80px;
+}
+
+/*Mesajes de ayuda de las calculadoras*/
+.alert {
+	background: #fff6bf center no-repeat;
+	background-position: 15px 50%; /* x-pos y-pos */
+	text-align: left;
+	padding: 5px 20px 5px 45px;
+	border-top: 2px solid #ffd324;
+	border-bottom: 2px solid #ffd324;
+	font-weight: bold;
+}
+
+#contenido_general {
+	WIDTH: 95%;
+	HEIGHT: 100%;
+	BACKGROUND: #ECF1F9;
+	MARGIN: 0 auto;
+}
+
+#columna_izquierda {
+	width: 14%;
+	BACKGROUND: #ecf2f8;
+	BORDER-RIGHT: 0px #3C598A solid;
+	HEIGHT: 100%;
+	min-height: 600px;
+	FLOAT: left;
+	CLEAR: left;
+	PADDING: 0px 0px 0px 0px;
+}
+
+#logotipo {
+	/*padding: 20px 0px;*/
+	
+}
+
+#menu_general {
+	CONTENT: 'Menú de servicios';
+	FONT-SIZE: 15px;
+	FONT-WEIGHT: bold;
+	WIDTH: 100%;
+	MIN-HEIGHT: 300px;
+	HEIGHT: auto;
+}
+
+#columna_derecha {
+	HEIGHT: 100%;
+	MARGIN-LEFT: 10px;
+	MARGIN-RIGHT: 15px;
+	WIDTH: 78%;
+	FLOAT: right;
+}
+
+#derecha_arriba {
+	BACKGROUND: transparent;
+	HEIGHT: 60px;
+	PADDING: 5px;
+	min-width: 1010px;
+}
+
+#espacio_titulopagina {
+	FONT-SIZE: 25px;
+	padding: 5px 10px;
+	FLOAT: left;
+	LINE-HEIGHT: 40px;
+	WIDTH: 74%;
+}
+
+#espacio_profile {
+	FLOAT: right;
+	WIDTH: 22%;
+	PADDING: 5px;
+	HEIGHT: 50px;
+	TEXT-ALIGN: right;
+	LINE-HEIGHT: 20px;
+	VERTICAL-ALIGN: top;
+	BORDER-LEFT: 0px #757577 solid;
+	margin-bottom: 5px;
+}
+
+.botones_usuario {
+	width: 150px;
+	float: right;
+}
+
+#espacio_profile span {
+	FONT-SIZE: 10px;
+}
+
+#espacio_profile a {
+	FONT-SIZE: 11px;
+}
+
+#derecha_centro {
+	BACKGROUND: #FFFFFF;
+	BORDER: 0px #3C598A solid;
+	HEIGHT: 85%;
+	PADDING: 10px;
+	overflow: auto;
+	min-width: 1010px;
+}
+
+#derecha_abajo {
+	BACKGROUND: transparent;
+	HEIGHT: 25px;
+	PADDING: 2px;
+	MARGIN-TOP: 10px;
+	TEXT-ALIGN: right;
+	PADDING-RIGHT: 5px;
+}

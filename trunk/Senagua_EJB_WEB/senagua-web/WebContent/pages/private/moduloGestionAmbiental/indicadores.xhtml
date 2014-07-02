@@ -1,0 +1,236 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Indicadores</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Indicadores</f:facet>
+
+	<h:form id="indicadoresForm">
+		<p:growl id="msgs" showDetail="true" />
+		<p:panelGrid columns="3">
+			<f:facet name="header">  
+       Objetivo del Indicador: 
+       <p:commandButton value="Actualizar"
+					action="#{indicadoresAmbientalControl.init}"
+					icon="ui-icon-arrowrefresh-1-w" update=":indicadoresForm" />
+				<p:commandButton value="Crear Objetivo" icon="ui-icon-home"
+					update=":indicadoresForm" onclick="PF('dlgObjetivo').show();"
+					action="#{indicadoresAmbientalControl.crearObjetivo()}" />
+
+			</f:facet>
+			<h:outputLabel value="Objetivos: *" />
+			<p:selectOneMenu value="#{indicadoresAmbientalControl.id}"
+				style="width: 700px; ">
+				<f:selectItem itemLabel="Seleccione Objetivo" itemValue="" />
+				<f:selectItems
+					value="#{indicadoresAmbientalControl.rhMgaObjetivolst }" var="i"
+					itemValue="#{i.obId}" itemLabel="#{i.obNombre}" />
+				<p:ajax update=":indicadoresForm,:indicadoresForm:indicadoresDT"
+					listener="#{indicadoresAmbientalControl.cargaIndicadores()}" />
+			</p:selectOneMenu>
+
+			<p:commandButton title="Eliminar" icon="ui-icon-close"
+				rendered="#{indicadoresAmbientalControl.flagEliminar}"
+				action="#{indicadoresAmbientalControl.eliminarAll()}"
+				update=":indicadoresForm,:indicadoresForm:msgs,:dialogWait"
+				onclick="dlgWait.show()">
+
+			</p:commandButton>
+		</p:panelGrid>
+
+		<p:dataTable id="indicadoresDT" var="in"
+			value="#{indicadoresAmbientalControl.rhMgaIndicadorlst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20" scrollable="true" scrollWidth="1000"
+			resizableColumns="true">
+			<f:facet name="header">  
+           Indicadores
+           <p:commandButton value="Actualizar"
+					action="#{indicadoresAmbientalControl.actualizar()}"
+					icon="ui-icon-arrowrefresh-1-w" update=":indicadoresForm" />
+				<p:commandButton value="Agregar"
+					action="#{indicadoresAmbientalControl.nuevo()}" icon="ui-icon-star"
+					update=":indicadoresForm" />
+				<p:commandButton value="Guardar"
+					actionListener="#{indicadoresAmbientalControl.guardar()}"
+					update=":indicadoresForm,:indicadoresForm:msgs" icon="ui-icon-disk" />
+
+			</f:facet>
+
+
+			<p:column headerText="INDICADOR">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{in.inDetalleindicador}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{in.inDetalleindicador}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="DEMARCACIÓN HIDROGRÁFICA">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{in.inDemarcacion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{in.inDemarcacion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="FÓRMULA">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{in.inFormula}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{in.inFormula}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Periodo">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{in.inPeriodo}">
+						</h:outputText>
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu value="#{in.inPeriodo}" style="width: 100px; ">
+							<f:selectItem itemLabel="Escoja un Periodo.." itemValue="" />
+							<f:selectItems
+								value="#{indicadoresAmbientalControl.periodoLista}" var="l"
+								itemValue="#{l}" itemLabel="#{l}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Edición">
+				<p:commandButton title="Editar"
+					action="#{indicadoresAmbientalControl.editarIndicador}"
+					icon="ui-icon-pencil" onclick="PF('dlg').show();"
+					update=":indicadoresForm:msgs,:indicadoValoresForm">
+					<f:setPropertyActionListener
+						target="#{indicadoresAmbientalControl.rhMgaIndicador}"
+						value="#{in}" />
+				</p:commandButton>
+				<p:commandButton title="Graficar" icon="ui-icon-check"
+					action="#{indicadoresAmbientalControl.graficarIndicadores()}"
+					update=":indicadoresForm">
+					<f:setPropertyActionListener
+						target="#{indicadoresAmbientalControl.rhMgaIndicador}"
+						value="#{in}" />
+				</p:commandButton>
+
+				<p:commandButton title="Eliminar" icon="ui-icon-close"
+					action="#{indicadoresAmbientalControl.eliminarObjetivo}"
+					update=":indicadoresForm,:indicadoresForm:msgs,:dialogWait"
+					onclick="dlgWait.show()">
+					<f:setPropertyActionListener
+						target="#{indicadoresAmbientalControl.rhMgaIndicador}"
+						value="#{in}" />
+					<p:confirm header="Confirmación"
+						message="Desea eliminar la información?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Yes" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+			</p:column>
+		</p:dataTable>
+
+
+		<p:panel rendered="#{indicadoresAmbientalControl.flag}"
+			header="#{indicadoresAmbientalControl.rhMgaIndicador.inDetalleindicador}">
+			<p:barChart id="basic"
+				value="#{indicadoresAmbientalControl.categoryModel}"
+				legendPosition="ne" title="Grafica de Indicadores" min="0" max="100"
+				style="width:800px" animate="true" />
+		</p:panel>
+
+
+	</h:form>
+
+	<p:dialog id="modalDialog" header="Edición de Indicadores"
+		widgetVar="dlg" modal="true" height="600">
+		<h:form id="indicadoValoresForm">
+			<p:growl id="msgs2" showDetail="true" />
+			<p:dataTable id="indicadorValorDT" var="v"
+				value="#{indicadoresAmbientalControl.rhMgaIndicadorvalorelst}"
+				editable="true" paginator="true" rows="20" scrollable="true"
+				scrollWidth="800" resizableColumns="true">
+				<f:facet name="header">  
+           Valor de Indicadores
+            <p:commandButton value="Actualizar Valor"
+						action="#{indicadoresAmbientalControl.actualizarValor()}"
+						icon="ui-icon-arrowrefresh-1-w"
+						update=":indicadoValoresForm,:indicadoValoresForm:msgs2" />
+				</f:facet>
+
+				<p:column headerText="Valor Indice">
+					<p:inputText value="#{v.invValoresperado}"
+						rendered="#{(v.invEstado == false)?'false':'true'}" />
+
+				</p:column>
+				<p:column headerText="Valor Actual">
+					<p:inputText value="#{v.invValoractual}"
+						rendered="#{(v.invEstado == false)?'false':'true'}">
+
+					</p:inputText>
+				</p:column>
+				<p:column id="real" headerText="Valor Real">
+					<p:outputLabel value="#{v.invValorreal} %"
+						rendered="#{(v.invEstado == false)?'false':'true'}" />
+				</p:column>
+				<p:column headerText="Nombre Indicador">
+					<p:inputText value="#{v.invDescripcioparametro}"
+						rendered="#{(v.invEstado == false)?'false':'true'}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</p:dialog>
+
+
+	<p:dialog id="modalDialogObjetivo" header="Nuevo Objetivo"
+		widgetVar="dlgObjetivo" modal="true" height="400">
+		<h:form id="crearObjetivoForm">
+			<p:growl id="msgs3" showDetail="true" />
+			<p:panelGrid columns="4">
+				<p:outputLabel value="Nombre del Objetivo:" />
+				<p:inputText
+					value="#{indicadoresAmbientalControl.rhMgaObjetivo.obNombre}"
+					required="true" />
+			</p:panelGrid>
+
+			<p:commandButton value="Guardar Objetivo"
+				action="#{indicadoresAmbientalControl.guardarObjetivo()}"
+				icon="ui-icon-disk" update=":indicadoresForm,:crearObjetivoForm" />
+		</h:form>
+
+	</p:dialog>
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{indicadoresAmbientalControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../../css/base.css"
+		media="screen" />
+	<link rel="icon" href="../../img/plantilla/logo_peque.png" />
+	<title>SENAGUA</title>
+</h:head>
+
+<h:body>
+	<div id="principal">
+		<div id="cabecera">
+
+			<div class="menu_superior" style=" width : 276px;">
+				<p align="right">SNIRH - Sistema Nacional de Información de</p>
+				<p align="right">los Recursos H&iacute;dricos</p>
+			</div>
+			<div class="menu_supe" style="width: 368px; color: #294a71">
+
+				<p align="lefth">Ingrese las credenciales asignadas por el
+					administrador:</p>
+			</div>
+			<div class="logo" style="width: 241px; height: 78px">&nbsp;</div>
+
+			<div class="banner">&nbsp;</div>
+
+
+		</div>
+		<!-- area principal -->
+
+		<div id="login" class="cont_derecha">
+			<div>
+				<!-- ; border-color:#6482b2 -->
+				<div class="ingreso_sistema">
+					<h:form>
+						<p:fieldset
+							style="border: 0px;border-radius: 15px; height:142px; width:294px; background:url(../../img/plantilla/fondo_tabla_login_ori.png)">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="Usuario"></h:outputText>
+								<h:inputText value="#{loginControlador.userName}"></h:inputText>
+								<h:outputText value="Password"></h:outputText>
+								<h:inputSecret value="#{loginControlador.password}"></h:inputSecret>
+							</h:panelGrid>
+
+
+							<center>
+								<h:commandButton value="Ingresar al sistema"
+									action="#{loginControlador.entrar}" class="button_0"></h:commandButton>
+							</center>
+
+						</p:fieldset>
+					</h:form>
+
+				</div>
+
+
+				<div style="width: 748px;">
+					<div
+						style="margin: 85px 0px 0px 30px; height: 35px; color: #294a71; width: 797px;">Todos
+						los Derechos Reservados © 2013</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
+
+

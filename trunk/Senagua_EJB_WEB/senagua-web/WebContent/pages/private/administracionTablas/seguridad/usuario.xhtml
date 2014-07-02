@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Administracion Actores</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Administracion Actores</f:facet>
+
+	<h:form id="admUsuario">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="tblUsuario" var="u"
+			value="#{usuarioControlador.rhGlbUsuarios}" editable="true"
+			editMode="cell" widgetVar="zTable" paginator="true" rows="10">
+			<f:facet name="header">  
+            Administración Usuarios     
+            <p:commandButton value="Anadir"
+					action="#{usuarioControlador.anadir()}"
+					update=":admUsuario,:admUsuario:msgs" icon="ui-icon-star" />
+				<p:commandButton value="Actualizar"
+					action="#{usuarioControlador.init()}" update=":admUsuario"
+					icon="ui-icon-arrowrefresh-1-w" />
+
+			</f:facet>
+			<p:column headerText="Codigo">
+				<h:outputText value="#{u.usuCodigo}" />
+			</p:column>
+			<p:column headerText="Usuario" filterBy="#{u.usuUsuario}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{u.usuUsuario}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{u.usuUsuario}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Contraseña">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{u.usuContrasena}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{u.usuContrasena}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Estado">
+				<p:selectBooleanCheckbox value="#{u.usu_estado}" />
+			</p:column>
+
+
+			<p:column headerText="Edición" style="width:5%">
+				<p:commandButton title="Perfil de Usuario"
+					action="#{usuarioControlador.verificarPerfil()}"
+					update=":admUsuario,:admUsuario:msgs,:perfilForm"
+					icon="ui-icon-pencil" onclick="PF('dlg').show();">
+					<f:setPropertyActionListener
+						target="#{usuarioControlador.rhGlbUsuario}" value="#{u}" />
+				</p:commandButton>
+
+				<p:commandButton title="Guardar Registro"
+					action="#{usuarioControlador.guardar()}"
+					update=":admUsuario,:admUsuario:msgs" icon="ui-icon-disk">
+					<f:setPropertyActionListener
+						target="#{usuarioControlador.rhGlbUsuario}" value="#{u}" />
+				</p:commandButton>
+				<p:commandButton title="Eliminar Registro"
+					action="#{usuarioControlador.eliminarRegistro()}"
+					update=":admUsuario,:admUsuario:msgs" icon="ui-icon-close">
+					<f:setPropertyActionListener
+						target="#{usuarioControlador.rhGlbUsuario}" value="#{u}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+
+
+	<p:dialog id="modalDialogPerfil" header="Edición de Perfil"
+		widgetVar="dlg" modal="true" height="400">
+		<h:form id="perfilForm">
+			<p:growl id="msgs2" showDetail="true" />
+			<p:panelGrid columns="3">
+				<f:facet name="header">  
+       Perfil
+    </f:facet>
+				<p:outputLabel value="Tipo Perfil:" />
+				<p:outputLabel
+					value="#{usuarioControlador.rhGlbUsuPef.rhGlbPerfile.pefNombre}" />
+				<p:commandButton value="Perfil"
+					action="#{usuarioControlador.activarCambioPerfil()}"
+					update=":perfilForm" icon="ui-icon-pencil" />
+
+			</p:panelGrid>
+
+
+			<p:panelGrid columns="3" rendered="#{usuarioControlador.flag}">
+				<f:facet name="header">  
+       Perfiles Disponibles
+    </f:facet>
+				<p:outputLabel value="Perfiles:" />
+				<p:selectOneMenu value="#{usuarioControlador.rhGlbPerfil.pefCodigo}">
+					<f:selectItem itemLabel="Escoja un Perfil" itemValue="" />
+					<f:selectItems value="#{usuarioControlador.rhGlbPerfilst}" var="p"
+						itemLabel="#{p.pefNombre}" itemValue="#{p.pefCodigo}" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="Guardar Perfil"
+					action="#{usuarioControlador.guardarCambioPerfil()}"
+					update=":perfilForm" icon="ui-icon-pencil"></p:commandButton>
+
+			</p:panelGrid>
+		</h:form>
+
+	</p:dialog>
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+		
+	<h:head>
+		<!-- <meta http-equiv="refresh" content="0; URL=../private/homeTemplate.jsp" /> -->
+		
+	  <!-- CSS de Apps. Web -->
+	  <link rel="icon" href="../../img/plantilla/log_iess.gif" />
+	  <link rel="stylesheet" type="text/css" href="../../css/base.css"
+		media="screen" />
+	  <!-- FIN SCRIPTS DEL IESS -->
+	  	
+	  <script src="../../js/jquery.js" type="text/javascript"></script>
+	  <script src="../../js/functions.js" type="text/javascript"></script>
+	  <script src="../../js/jquery.cookie.js" type="text/javascript"></script>
+	  <script src="../../js/jquery.treeview.js" type="text/javascript"></script>
+	  
+	  <f:metadata>
+		<f:event type="preRenderView" listener="#{loginUtil.isLoggedIn}" />
+	  </f:metadata>
+	</h:head>
+	
+	<h:body>
+		<div id="cabecera">
+	       <div class="menu_superior" id="menu_superior"> 	            
+		    
+	       </div>
+	       <div class="logo">&nbsp;</div>
+	       <div class="rosa">&nbsp;</div>
+	       <div class="banner">&nbsp;</div>
+	  </div>
+	  <div id="content">
+	      SESI&Oacute;N EXPIRADA.
+	  </div>
+	  <div id="pie">
+	       
+	  </div>
+	  <div style="margin: 5px; height: 25px; color: #8d8f90">Instituto
+	     :-------------</div>
+     
+    
+	</h:body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="senagua-ejb">
+		<jta-data-source>java:/SenaguaDS</jta-data-source>
+		<class>ec.gob.senagua.modelo.RhGlbOpcionesMenu</class>
+		<class>ec.gob.senagua.modelo.RhGlbPerfil</class>
+		<class>ec.gob.senagua.modelo.RhGlbPermiso</class>
+		<class>ec.gob.senagua.modelo.RhGlbPermisosOpcionesMenuPerfil</class>
+		<class>ec.gob.senagua.modelo.RhGlbUsuPef</class>
+		<class>ec.gob.senagua.modelo.RhGlbUsuario</class>
+		<class>ec.gob.senagua.modelo.RhMcaComparacionreportenormalimite</class>
+		<class>ec.gob.senagua.modelo.RhMcaMuestreo</class>
+		<class>ec.gob.senagua.modelo.RhMcaParametrosLimitesesperado</class>
+		<class>ec.gob.senagua.modelo.RhMcaParametrosNormavigente</class>
+		<class>ec.gob.senagua.modelo.RhMcaParametroscomparacion</class>
+		<class>ec.gob.senagua.modelo.RhMcaReportelaboratorio</class>
+		<class>ec.gob.senagua.modelo.RhMgaContaminacion</class>
+		<class>ec.gob.senagua.modelo.RhMgaIndicador</class>
+		<class>ec.gob.senagua.modelo.RhMgaIndicadorvalore</class>
+		<class>ec.gob.senagua.modelo.RhMgaLicenciamientoambiental</class>
+		<class>ec.gob.senagua.modelo.RhMgaMatrizseguimientoplanesma</class>
+		<class>ec.gob.senagua.modelo.RhMgaObjetivo</class>
+		<class>ec.gob.senagua.modelo.RhMgaProyectomatrizseguimientoplanesma</class>
+		<class>ec.gob.senagua.modelo.RhMgaRegistroinformacion</class>
+		<class>ec.gob.senagua.modelo.RhParametroSistema</class>
+		<class>ec.gob.senagua.modelo.RhTabletCoordenadasextra</class>
+		<class>ec.gob.senagua.modelo.RhTabletFoto</class>
+		<class>ec.gob.senagua.modelo.RhTabletInstitucione</class>
+		<class>ec.gob.senagua.modelo.RhTabletRegistro</class>
+		<class>ec.gob.senagua.modelo.TmpObtienedato</class>
+		<class>ec.gob.senagua.modelo.VwObtienedato</class>
+		<class>ec.gob.senagua.modelo.TmpGetFoto</class>
+		<class>ec.gob.senagua.modelo.gis.Cuenca</class>
+		<class>ec.gob.senagua.modelo.gis.DemarcacionesHidrograficas050kA</class>
+		<class>ec.gob.senagua.modelo.gis.DpaCantone</class>
+		<class>ec.gob.senagua.modelo.gis.DpaParroquia</class>
+		<class>ec.gob.senagua.modelo.gis.DpaProvincia</class>
+		<class>ec.gob.senagua.modelo.gis.Subcuenca</class>
+		<class>ec.gob.senagua.modelo.gis.UnidadesHidrograficas050kA</class>
+		<class>ec.gob.senagua.modelo.VwCalidadGeneral</class>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

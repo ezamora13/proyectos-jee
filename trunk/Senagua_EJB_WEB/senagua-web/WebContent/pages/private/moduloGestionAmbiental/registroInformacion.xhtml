@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Registro de Información</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Registro de Información  </f:facet>
+
+	<h:form id="registroInformacionForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="contaminacionAmbDT" var="r"
+			value="#{registroInformacionControl.rhMgaRegistroinformacionlst}"
+			editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+			rows="20">
+			<f:facet name="header">  
+           Registro de Información:  
+           <p:commandButton value="Actualizar"
+					action="#{registroInformacionControl.actualizar}"
+					icon="ui-icon-arrowrefresh-1-w" update=":registroInformacionForm" />
+				<p:commandButton value="Agregar"
+					actionListener="#{registroInformacionControl.nuevo()}"
+					update=":registroInformacionForm,:registroInformacionForm:msgs"
+					icon="ui-icon-star" />
+
+			</f:facet>
+
+			<p:column headerText="Categoria">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgCategoria}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgCategoria}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="SubCategoria">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgSubcategoria}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgSubcategoria}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Demarcación" filterBy="#{r.rgDemarcacion}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgDemarcacion}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgDemarcacion}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Centro Zonal">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgCentrozonal}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgCentrozonal}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Titulo" filterBy="#{r.rgTitulo}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgTitulo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgTitulo}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Resumen">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.rgResumen}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{r.rgResumen}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Fecha Creación" filterBy="#{r.rgFechacreacion}">
+				<h:outputText value="#{r.rgFechacreacion}" />
+			</p:column>
+			<p:column headerText="Descargar">
+				<p:commandLink value="#{(r.rgArchivo == null)?'':'Download' }"
+					ajax="false">
+					<f:setPropertyActionListener
+						target="#{registroInformacionControl.rhMgaRegistroinformacion}"
+						value="#{r}" />
+					<p:fileDownload
+						value="#{registroInformacionControl.selectedFileToDownload}" />
+				</p:commandLink>
+				<p:commandLink value="#{(r.rgArchivo == null)?'Upload':'' }"
+					onclick="PF('dlg2').show();">
+					<f:setPropertyActionListener
+						target="#{registroInformacionControl.rhMgaRegistroinformacion}"
+						value="#{r}" />
+				</p:commandLink>
+
+			</p:column>
+			<p:column headerText="Edición">
+				<p:commandButton title="Eliminar" icon="ui-icon-close"
+					action="#{registroInformacionControl.eliminar()}"
+					update=":registroInformacionForm,:registroInformacionForm:msgs">
+					<f:setPropertyActionListener
+						target="#{registroInformacionControl.rhMgaRegistroinformacion}"
+						value="#{r}" />
+				</p:commandButton>
+				<p:commandButton title="Guardar"
+					action="#{registroInformacionControl.guardar}"
+					update=":registroInformacionForm,:registroInformacionForm:msgs,:dialogWait"
+					icon="ui-icon-disk" onclick="dlgWait.show()">
+					<f:setPropertyActionListener
+						target="#{registroInformacionControl.rhMgaRegistroinformacion}"
+						value="#{r}" />
+				</p:commandButton>
+
+			</p:column>
+
+
+
+		</p:dataTable>
+	</h:form>
+
+	<p:dialog id="modalDialog" header="Carga de Archivos" widgetVar="dlg2"
+		modal="true" height="100">
+		<h:form>
+			<p:fileUpload
+				fileUploadListener="#{registroInformacionControl.handleFileUpload}"
+				mode="advanced" update=":registroInformacionForm:msgs" auto="true"
+				sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+
+			<p:growl id="messages" showDetail="true" />
+		</h:form>
+
+	</p:dialog>
+
+
+	<p:dialog id="dialogWait" header="Procesando" widgetVar="dlgWait"
+		modal="true" closable="#{registroInformacionControl.flagWaiting}">
+		<h:form id="waitingForm">
+			<h:graphicImage url="/img/cargando/ani_cargando.gif" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Indicadores</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Indicadores</f:facet>
+
+	<h:form id="indicadorForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:panelGrid columns="3">
+			<f:facet name="header">  
+        Código del punto de muestreo:   
+        <p:commandButton value="Actualizar"
+					action="#{indicadoresPuntosCalidadAguaControl.init}"
+					icon="ui-icon-arrowrefresh-1-w" update=":indicadorForm" />
+			</f:facet>
+
+			<h:outputLabel value="Codigo: *" />
+			<p:selectCheckboxMenu id="menu"
+				value="#{indicadoresPuntosCalidadAguaControl.selectedPuntos}"
+				label="Seleccion de puntos" filter="true"
+				filterMatchMode="startsWith" panelStyle="width:250px">
+				<f:selectItems
+					value="#{indicadoresPuntosCalidadAguaControl.muestreo}" />
+			</p:selectCheckboxMenu>
+			<p:commandButton value="Cargar Parametros"
+				action="#{indicadoresPuntosCalidadAguaControl.escogerParametro}"
+				update=":indicadorForm" />
+
+			<p:outputLabel value="Escoja el Parametro: *" />
+			<p:selectCheckboxMenu id="menuParametros"
+				value="#{indicadoresPuntosCalidadAguaControl.selectedParametros}"
+				label="Seleccion de parametros" filter="true"
+				filterMatchMode="startsWith" panelStyle="width:250px"
+				rendered="#{indicadoresPuntosCalidadAguaControl.flag}">
+				<f:selectItems
+					value="#{indicadoresPuntosCalidadAguaControl.parametros}" />
+			</p:selectCheckboxMenu>
+			<p:commandButton value="Consultar"
+				action="#{indicadoresPuntosCalidadAguaControl.consultarParametros}"
+				update="indicadorForm"
+				rendered="#{indicadoresPuntosCalidadAguaControl.flag}"
+				icon="ui-icon-search"></p:commandButton>
+
+		</p:panelGrid>
+
+
+
+		<h:panelGroup
+			rendered="#{indicadoresPuntosCalidadAguaControl.flagGrafico}">
+
+			<p:dataTable id="tablesDT" var="t"
+				value="#{indicadoresPuntosCalidadAguaControl.rhMcaReportelaboratorios}"
+				editable="true" editMode="cell" widgetVar="zTable" paginator="true"
+				rows="10">
+				<f:facet name="header">  
+         Datos Grafica      
+								</f:facet>
+				<p:column headerText="Y - Medición">
+					<h:outputText value="#{t.rptMedicion}" />
+				</p:column>
+				<p:column headerText="Parámetro">
+					<h:outputText value="#{t.rptParametro}" />
+				</p:column>
+				<p:column headerText="X - Fecha">
+					<h:outputText value="#{t.rptFechamuestreo}" />
+				</p:column>
+			</p:dataTable>
+			<h:commandLink>
+				<p:graphicImage value="/img/export/graficas.png" />
+				<p:fileDownload
+					value="#{indicadoresPuntosCalidadAguaControl.selectedFile }" />
+			</h:commandLink>
+
+		</h:panelGroup>
+
+
+
+
+
+
+
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>

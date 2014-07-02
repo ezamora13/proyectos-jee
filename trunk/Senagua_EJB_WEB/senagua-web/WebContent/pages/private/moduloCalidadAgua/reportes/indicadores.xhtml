@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Indicadores</title>
+</h:head>
+
+<h:body>
+	<f:facet name="header">Indicadores</f:facet>
+
+	<h:form id="indicadorForm">
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:panelGrid columns="4">
+			<f:facet name="header">  
+        Código del punto de muestreo:   
+        <p:commandButton value="Actualizar"
+					action="#{indicadoresCalidadAguaControl.init}"
+					icon="ui-icon-arrowrefresh-1-w" update=":indicadorForm" />
+			</f:facet>
+
+			<h:outputLabel value="Codigo: *" />
+			<p:selectOneMenu value="#{indicadoresCalidadAguaControl.idMuestreo}">
+				<f:selectItem itemLabel="Seleccione Ficha.." itemValue="" />
+				<f:selectItems
+					value="#{indicadoresCalidadAguaControl.rhMcaMuestreoLst}" var="f"
+					itemValue="#{f.msId}" itemLabel="#{f.msCodigo}" />
+				<p:ajax update=":indicadorForm"
+					listener="#{indicadoresCalidadAguaControl.cargarParametros}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Escoja el Parametro: *" />
+			<p:selectOneMenu value="#{indicadoresCalidadAguaControl.parametro}">
+				<f:selectItem itemLabel="Seleccione Parametro...." itemValue="" />
+				<f:selectItems value="#{indicadoresCalidadAguaControl.parametros}"
+					var="p" itemValue="#{p}" itemLabel="#{p}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		<p:commandButton value="Graficar"
+			action="#{indicadoresCalidadAguaControl.graficar}"
+			update=":indicadorForm" />
+		<h:panelGrid columns="2" columnClasses="left,right" style="width:100%"
+			rendered="#{indicadoresCalidadAguaControl.flag}">
+			<p:lineChart value="#{indicadoresCalidadAguaControl.model}" legendPosition="e" />
+		</h:panelGrid>
+	</h:form>
+
+
+
+
+</h:body>
+
+</html>
