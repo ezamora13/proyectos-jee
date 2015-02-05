@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2015-01-20T11:09:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MemoFopeca" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Oracle11"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#FAFBFC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FBFDFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="bf1b98d1-f937-4526-8c03-20c8ee93e1bb">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Oracle11"/>
+		<parameter name="CABM_TIPOMEMO" class="java.lang.String"/>
+		<parameter name="cabm_area" class="java.lang.String"/>
+		<parameter name="cabm_codplan" class="java.lang.String"/>
+		<parameter name="cabm_numemo" class="java.lang.String"/>
+		<parameter name="cabm_codemp" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT   m.conm_camponum,m.conm_campovar,m.conm_campovar2
+FROM TGEN_CABMEMO c,TGEN_CONTEVALORES u,TGEN_CONTENIDOMEMO m
+WHERE 
+--Q2
+C.CABM_CODEMP= U.COVA_CODEMP  
+AND C.CABM_NUMEMO=U.COVA_NUMEMO
+AND C.CABM_TIPOMEMO= U.COVA_TIPOMEMO
+AND C.CABM_AREA=U.COVA_AREA
+AND C.CABM_CODPLAN=U.COVA_CODPLAN
+--q3
+AND C.CABM_CODEMP= M.CONM_CODEMP 
+AND C.CABM_NUMEMO=M.CONM_NUMEMO
+AND C.CABM_TIPOMEMO= M.CABM_TIPOMEMO
+AND C.CABM_AREA=M.CABM_AREA
+AND C.CABM_CODPLAN=M.CABM_CODPLAN
+--Parametros
+AND c.cabm_codemp = $P{cabm_codemp} 
+AND c.cabm_numemo =  $P{cabm_numemo} 
+AND c.cabm_codplan =  $P{cabm_codplan} 
+AND c.cabm_area =  $P{cabm_area} 
+and c.CABM_TIPOMEMO =  $P{CABM_TIPOMEMO}]]>
+		</queryString>
+		<field name="CONM_CAMPONUM" class="java.math.BigDecimal"/>
+		<field name="CONM_CAMPOVAR" class="java.lang.String"/>
+		<field name="CONM_CAMPOVAR2" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="cabm_codemp" class="java.lang.String"/>
+	<parameter name="cabm_numemo" class="java.lang.String"/>
+	<parameter name="cabm_codplan" class="java.lang.String"/>
+	<parameter name="cabm_area" class="java.lang.String"/>
+	<parameter name="CABM_TIPOMEMO" class="java.lang.String"/>
+	<parameter name="ubicacionLogo" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT c.cabm_codemp, c.cabm_numemo, c.cabm_codplan, c.cabm_area, c.cabm_codigo, c.CABM_TIPOMEMO, c.cabm_usude,c.cabm_asunto,c.cabm_nota,c.cabm_pie,c.cabm_para, c.cabm_carpara, c.cabm_carde,  C.CABM_FECHA , CAMB_CODUSDE
+,  u.cova_codemp, u.cova_numemo,u.cova_cuerpo,u.cova_pie,COVA_AREA, COVA_TIPOMEMO, COVA_CODPLAN
+, m.conm_codemp, m.conm_numemo, m.conm_camponum,m.conm_campovar,m.conm_campovar2,m.conm_campofecha,m.CABM_AREA, m.CABM_TIPOMEMO,m.CABM_CODPLAN 
+FROM TGEN_CABMEMO c,TGEN_CONTEVALORES u,TGEN_CONTENIDOMEMO m
+WHERE 
+--Q2
+C.CABM_CODEMP= U.COVA_CODEMP  
+AND C.CABM_NUMEMO=U.COVA_NUMEMO
+AND C.CABM_TIPOMEMO= U.COVA_TIPOMEMO
+AND C.CABM_AREA=U.COVA_AREA
+AND C.CABM_CODPLAN=U.COVA_CODPLAN
+--q3
+AND C.CABM_CODEMP= M.CONM_CODEMP 
+AND C.CABM_NUMEMO=M.CONM_NUMEMO
+AND C.CABM_TIPOMEMO= M.CABM_TIPOMEMO
+AND C.CABM_AREA=M.CABM_AREA
+AND C.CABM_CODPLAN=M.CABM_CODPLAN
+--Parametros
+AND c.cabm_codemp = $P{cabm_codemp} 
+AND c.cabm_numemo =  $P{cabm_numemo} 
+AND c.cabm_codplan = $P{cabm_codplan} 
+AND c.cabm_area = $P{cabm_area} 
+and c.CABM_TIPOMEMO = $P{CABM_TIPOMEMO}]]>
+	</queryString>
+	<field name="CABM_CODEMP" class="java.math.BigDecimal"/>
+	<field name="CABM_NUMEMO" class="java.math.BigDecimal"/>
+	<field name="CABM_CODPLAN" class="java.math.BigDecimal"/>
+	<field name="CABM_AREA" class="java.lang.String"/>
+	<field name="CABM_CODIGO" class="java.lang.String"/>
+	<field name="CABM_TIPOMEMO" class="java.lang.String"/>
+	<field name="CABM_USUDE" class="java.lang.String"/>
+	<field name="CABM_ASUNTO" class="java.lang.String"/>
+	<field name="CABM_NOTA" class="java.lang.String"/>
+	<field name="CABM_PIE" class="java.lang.String"/>
+	<field name="CABM_PARA" class="java.lang.String"/>
+	<field name="CABM_CARPARA" class="java.lang.String"/>
+	<field name="CABM_CARDE" class="java.lang.String"/>
+	<field name="CABM_FECHA" class="java.lang.String"/>
+	<field name="CAMB_CODUSDE" class="java.lang.String"/>
+	<field name="COVA_CODEMP" class="java.math.BigDecimal"/>
+	<field name="COVA_NUMEMO" class="java.math.BigDecimal"/>
+	<field name="COVA_CUERPO" class="java.lang.String"/>
+	<field name="COVA_PIE" class="java.lang.String"/>
+	<field name="COVA_AREA" class="java.lang.String"/>
+	<field name="COVA_TIPOMEMO" class="java.lang.String"/>
+	<field name="COVA_CODPLAN" class="java.math.BigDecimal"/>
+	<field name="CONM_CODEMP" class="java.math.BigDecimal"/>
+	<field name="CONM_NUMEMO" class="java.math.BigDecimal"/>
+	<field name="CONM_CAMPONUM" class="java.math.BigDecimal"/>
+	<field name="CONM_CAMPOVAR" class="java.lang.String"/>
+	<field name="CONM_CAMPOVAR2" class="java.lang.String"/>
+	<field name="CONM_CAMPOFECHA" class="java.sql.Timestamp"/>
+	<field name="COLUMN_29" class="java.lang.String"/>
+	<field name="COLUMN_30" class="java.lang.String"/>
+	<field name="COLUMN_31" class="java.math.BigDecimal"/>
+	<group name="Gruppo1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupFooter>
+			<band>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="211" splitType="Stretch">
+			<line>
+				<reportElement x="-7" y="128" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="415" y="10" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="0" width="204" height="18" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEMORANDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="95" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="95" height="29" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<text><![CDATA[Para:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="95" height="25" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
+				<text><![CDATA[De:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="114" width="95" height="15" uuid="42f7f0d5-bc95-495c-860a-3587080ea2ae"/>
+				<text><![CDATA[Asunto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="18" width="204" height="22" uuid="f4cc94af-940f-422b-9086-512288a6d03a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CABM_CODIGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="101" width="214" height="15" uuid="1f8b1aae-f9c5-46fe-9f61-2f05e2254c3b"/>
+				<textFieldExpression><![CDATA[$F{CABM_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="116" width="214" height="13" uuid="75c32f3e-486d-4f5b-9554-2c6bb9a06426"/>
+				<textFieldExpression><![CDATA[$F{CABM_ASUNTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="41" width="214" height="16" uuid="fb4bb583-54d9-4bbb-a2dc-213f433fc69b"/>
+				<textFieldExpression><![CDATA[$F{CABM_PARA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="56" width="214" height="13" uuid="1799ff24-ca69-4967-be1b-1036bd2c6711"/>
+				<textFieldExpression><![CDATA[$F{CABM_CARPARA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="72" width="214" height="17" uuid="ce0193d6-a700-4177-8ee1-5ce1a499da7d"/>
+				<textFieldExpression><![CDATA[$F{CABM_USUDE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="87" width="214" height="13" uuid="c25efa9f-574f-4fd3-92cd-2c20b5d87254"/>
+				<textFieldExpression><![CDATA[$F{CABM_CARDE}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="120" height="45" uuid="f463cae3-f3ab-41fd-8e1d-9b287f4b8e2d"/>
+				<imageExpression><![CDATA[$P{ubicacionLogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="-1" y="139" width="549" height="30" uuid="ce136ada-50c8-4634-811d-3c282ca9cb68"/>
+				<textFieldExpression><![CDATA[$F{COVA_CUERPO}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement mode="Opaque" x="4" y="160" width="509" height="40" forecolor="#FFFFFF" uuid="a4772855-e8c0-4f10-bdd1-e39907d9d969">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="3a8a0bba-a0ea-44f9-be24-e071e65a043e">
+						<datasetParameter name="CABM_TIPOMEMO">
+							<datasetParameterExpression><![CDATA[$P{CABM_TIPOMEMO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cabm_area">
+							<datasetParameterExpression><![CDATA[$P{cabm_area}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cabm_codemp">
+							<datasetParameterExpression><![CDATA[$P{cabm_codemp}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cabm_codplan">
+							<datasetParameterExpression><![CDATA[$P{cabm_codplan}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cabm_numemo">
+							<datasetParameterExpression><![CDATA[$P{cabm_numemo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="50" uuid="11fa5335-dfe5-4d94-a41d-3bbe0995c0e0">
+						<jr:detailCell style="Table 8_TD" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="50" height="30" uuid="75ac15c1-ba32-45d6-9f71-d7ec8f02f75e"/>
+								<box>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{CONM_CAMPONUM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="c95aca80-cfd1-4c1d-93a4-0a91fec8c0ce">
+						<jr:detailCell style="Table 8_TD" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="200" height="30" uuid="fe419b59-a35a-4f9a-8754-93255eb83582"/>
+								<box>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement markup="html"/>
+								<textFieldExpression><![CDATA[$F{CONM_CAMPOVAR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="226" uuid="ae1ed10f-84e2-4e81-ad38-cfb6d0d9ef8a">
+						<jr:detailCell style="Table 8_TD" height="30">
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="226" height="30" uuid="4f0c00c5-9f30-460f-a91d-8e01afb3da92"/>
+								<box>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{CONM_CAMPOVAR2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="183">
+			<staticText>
+				<reportElement x="324" y="63" width="95" height="15" uuid="a174c823-205f-4483-829c-2ce8e365d01e"/>
+				<text><![CDATA[Recibido Por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="38" y="25" width="512" height="18" uuid="32fd4762-d6b8-4bc2-81a4-a1cdd5ce96cd"/>
+				<textFieldExpression><![CDATA[$F{CABM_PIE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="10" width="472" height="15" uuid="4fa307bc-190a-4ecc-a4d7-d16c7d074820"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CABM_NOTA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="65" width="95" height="15" uuid="505d10ef-5f25-4a05-8523-fbbd23f8d95e"/>
+				<text><![CDATA[Entregado Por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="95" width="214" height="13" uuid="324b8b5e-af75-4148-a9aa-993928231a8e"/>
+				<textFieldExpression><![CDATA[$F{CABM_CARDE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="80" width="214" height="16" uuid="841f4471-bd9b-4832-b97f-f510e4ad8a65"/>
+				<textFieldExpression><![CDATA[$F{CABM_PARA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="80" width="214" height="17" uuid="229ed27d-f901-4d56-b6bf-bb1f687316f8"/>
+				<textFieldExpression><![CDATA[$F{CABM_USUDE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="95" width="214" height="13" uuid="27312cfe-2c00-4776-82a0-a65758925538"/>
+				<textFieldExpression><![CDATA[$F{CABM_CARPARA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-4" y="10" width="68" height="15" uuid="54597628-b97c-4362-aa0d-f4c38f222376"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="64" width="189" height="1" uuid="d900781b-48dd-4130-a98d-f97fe19e1aac">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="318" y="63" width="189" height="1" uuid="c6f01cf6-6397-42b4-8feb-080a828030f5">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</lastPageFooter>
+</jasperReport>

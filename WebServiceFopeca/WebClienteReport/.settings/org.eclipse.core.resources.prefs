@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//JavaSource/ec/com/fopeca/webservices/CalculatorService.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/CalculatorServiceLocator.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/CalculatorServiceSoapBindingStub.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/CalculatorWs.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/GeneraPdfService.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/GeneraPdfServiceLocator.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/GeneraPdfServiceSoapBindingStub.java=UTF-8
+encoding//JavaSource/ec/com/fopeca/webservices/GeneraPdfWS.java=UTF-8
